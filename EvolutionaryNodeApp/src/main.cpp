@@ -11,6 +11,7 @@
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/sinks/basic_file_sink.h>
+#include <spdlog/sinks/daily_file_sink.h>
 #pragma warning(pop)
 
 #include <format>
@@ -98,6 +99,41 @@ int main(int argc, char* argv[])
 	app_info["spdlog version"] = spdlog_version();
 
 	std::cout << app_info.dump(4, ' ') << std::endl;
+
+    try
+    {
+        // TODO asynchroniczny
+        // flush
+        // poziomy logu
+        // obsluga wchar
+        // zamykanie logu
+        // kompresja katalogu
+        
+        // Sink do konsoli (kolorowy)
+        auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+        console_sink->set_level(spdlog::level::info);
+        console_sink->set_pattern("[%H:%M:%S] [%^%l%$] %v");
+
+        // Sink do pliku
+        auto file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>("app.log", 0, 0, false);
+        file_sink->set_level(spdlog::level::trace);
+        file_sink->set_pattern("[%Y-%m-%d %H:%M:%S] [%l] %v");
+
+        // Logger z dwoma sinkami
+        spdlog::logger logger("multi_logger", { console_sink, file_sink });
+        logger.set_level(spdlog::level::trace);
+
+        // Opcjonalnie jako globalny logger
+        spdlog::set_default_logger(std::make_shared<spdlog::logger>(logger));
+
+        logger.info("Application started");
+        logger.warn("This is a warning");
+        logger.error("Something went wrong");
+    }
+    catch (const spdlog::spdlog_ex& ex)
+    {
+        std::cerr << "Log init failed: " << ex.what() << std::endl;
+    }
 
 	return 0;
 }

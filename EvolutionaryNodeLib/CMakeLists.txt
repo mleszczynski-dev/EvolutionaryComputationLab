@@ -1,11 +1,11 @@
 ﻿add_library(
-	EvolutionaryAgentLib
+	EvolutionaryNodeLib
     STATIC
 	"src/TcpSocket.cpp"
 	"include/AbstractSocket.h")
 
 target_include_directories(
-	EvolutionaryAgentLib
+	EvolutionaryNodeLib
 	PUBLIC
 	${CMAKE_CURRENT_SOURCE_DIR}/include
     PRIVATE

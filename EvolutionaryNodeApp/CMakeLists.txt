@@ -1,14 +1,14 @@
 ﻿add_executable(
-    EvolutionaryAgentApp
+    EvolutionaryNodeApp
     "src/main.cpp")
 
 target_link_libraries(
-    EvolutionaryAgentApp
+    EvolutionaryNodeApp
     PRIVATE
-    EvolutionaryAgentLib)
+    EvolutionaryNodeLib)
 
 target_include_directories(
-    EvolutionaryAgentApp
+    EvolutionaryNodeApp
     PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     PRIVATE

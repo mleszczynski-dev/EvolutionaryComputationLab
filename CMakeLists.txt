@@ -21,5 +21,5 @@ if (WIN32)
         NOMINMAX)
 endif()
 
-add_subdirectory(EvolutionaryAgentLib)
-add_subdirectory(EvolutionaryAgentApp)
+add_subdirectory(EvolutionaryNodeLib)
+add_subdirectory(EvolutionaryNodeApp)
