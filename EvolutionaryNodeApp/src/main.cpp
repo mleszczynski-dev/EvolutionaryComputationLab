@@ -1,3 +1,5 @@
+#include "Application.h"
+
 #include <asio/version.hpp>
 
 #pragma warning(push)
@@ -46,7 +48,7 @@ std::string compiler_name()
 #elif defined(_MSC_VER)
     return "msvc";
 #else
-#error "Unknown compiler"
+    #error "Unknown compiler"
 #endif
 }
 
@@ -59,7 +61,7 @@ std::string compiler_version()
 #elif defined(_MSC_VER)
 	return std::format("{}.{}.{}", _MSC_VER / 100, _MSC_VER % 100, _MSC_FULL_VER % 100000);
 #else
-#error "Unknown compiler"
+    #error "Unknown compiler"
 #endif
 }
 
@@ -74,16 +76,20 @@ std::string build_type()
 
 std::string cpu_architecture()
 {
-#if defined(_M_X64)
-	return "x64";
-#elif defined(_M_IX86)
-	return "x86";
-#elif defined(_M_ARM64)
-	return "ARM64";
-#elif defined(_M_ARM)
-	return "ARM";
-#else
-	return "Unknown";
+#if defined(_MSC_VER)
+    #if defined(_M_X64)
+	    return "x64";
+    #elif defined(_M_IX86)
+	    return "x86";
+    #elif defined(_M_ARM64)
+	    return "ARM64";
+    #elif defined(_M_ARM)
+	    return "ARM32";
+    #else
+        #error "Unknown cpu architecture"
+#endif
+    #else
+        #error "Unknown compiler"
 #endif
 }
 
@@ -101,39 +107,24 @@ int main(int argc, char* argv[])
 	std::cout << app_info.dump(4, ' ') << std::endl;
 
     try
-    {
-        // TODO asynchroniczny
-        // flush
-        // poziomy logu
-        // obsluga wchar
-        // zamykanie logu
-        // kompresja katalogu
-        
-        // Sink do konsoli (kolorowy)
+    {       
         auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
         console_sink->set_level(spdlog::level::info);
         console_sink->set_pattern("[%H:%M:%S] [%^%l%$] %v");
 
-        // Sink do pliku
         auto file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>("app.log", 0, 0, false);
         file_sink->set_level(spdlog::level::trace);
         file_sink->set_pattern("[%Y-%m-%d %H:%M:%S] [%l] %v");
 
-        // Logger z dwoma sinkami
         spdlog::logger logger("multi_logger", { console_sink, file_sink });
         logger.set_level(spdlog::level::trace);
 
-        // Opcjonalnie jako globalny logger
         spdlog::set_default_logger(std::make_shared<spdlog::logger>(logger));
-
-        logger.info("Application started");
-        logger.warn("This is a warning");
-        logger.error("Something went wrong");
     }
     catch (const spdlog::spdlog_ex& ex)
     {
         std::cerr << "Log init failed: " << ex.what() << std::endl;
     }
 
-	return 0;
+    return Application::exec(argc, argv);
 }

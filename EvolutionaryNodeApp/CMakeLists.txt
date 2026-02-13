@@ -1,6 +1,6 @@
 ﻿add_executable(
     EvolutionaryNodeApp
-    "src/main.cpp")
+    "src/main.cpp" "include/Application.h" "src/Application.cpp")
 
 target_link_libraries(
     EvolutionaryNodeApp

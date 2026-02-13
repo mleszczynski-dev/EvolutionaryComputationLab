@@ -2,7 +2,12 @@
 	EvolutionaryNodeLib
     STATIC
 	"src/TcpSocket.cpp"
-	"include/AbstractSocket.h")
+	"include/AbstractSocket.h"
+	"include/GeneticAlgorithm.h"
+	"src/GeneticAlgorithm.cpp"
+	"include/TcpServer.h"
+	"include/TcpServerPtr.h"
+	"src/TcpServer.cpp")
 
 target_include_directories(
 	EvolutionaryNodeLib
