@@ -23,3 +23,4 @@ endif()
 
 add_subdirectory(EvolutionaryNodeLib)
 add_subdirectory(EvolutionaryNodeApp)
+add_subdirectory(EvolutionaryNodeTest)
