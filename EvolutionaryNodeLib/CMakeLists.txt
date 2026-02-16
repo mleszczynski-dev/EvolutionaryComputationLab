@@ -1,13 +1,16 @@
 ﻿add_library(
 	EvolutionaryNodeLib
     STATIC
-	"src/TcpSocket.cpp"
-	"include/AbstractSocket.h"
 	"include/GeneticAlgorithm.h"
 	"src/GeneticAlgorithm.cpp"
 	"include/TcpServer.h"
 	"include/TcpServerPtr.h"
 	"src/TcpServer.cpp")
+
+target_link_libraries(
+    EvolutionaryNodeLib
+    PUBLIC
+    NetworkLib)
 
 target_include_directories(
 	EvolutionaryNodeLib
