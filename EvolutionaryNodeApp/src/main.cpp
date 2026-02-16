@@ -115,9 +115,8 @@ nlohmann::json load_json_settings(std::filesystem::path path)
 [[nodiscard]]
 auto initialize_spdlog(const nlohmann::json& settings)
 {
-    nlohmann::json logger = settings.value("logger", nlohmann::json::object());
-    nlohmann::json logger_console = logger.value("console", nlohmann::json::object());
-    nlohmann::json logger_file = logger.value("file", nlohmann::json::object());
+    nlohmann::json logger_console = settings.value("console", nlohmann::json::object());
+    nlohmann::json logger_file = settings.value("file", nlohmann::json::object());
 
     std::vector<spdlog::sink_ptr> log_sinks;
     std::string log_pattern = "[%Y-%m-%d %H:%M:%S.%f] [%^%l%$] [T%t] [%s:%#] [%!] %v";
@@ -142,7 +141,7 @@ auto initialize_spdlog(const nlohmann::json& settings)
 
     std::shared_ptr<spdlog::logger> multi_sink_logger = nullptr;
 
-    if (logger.value("async", true))
+    if (settings.value("async", true))
     {
         spdlog::init_thread_pool(8192, 1);
         multi_sink_logger =
@@ -175,7 +174,7 @@ int main(int argc, char* argv[])
 	std::cout << app_info.dump(4) << std::endl;
 
     nlohmann::json settings = load_json_settings("settings.json");
-    auto _ = initialize_spdlog(settings);
+    auto _ = initialize_spdlog(settings.value("logger", nlohmann::json::object()));
 
     SPDLOG_INFO("\n{}", settings.dump(4));
 
