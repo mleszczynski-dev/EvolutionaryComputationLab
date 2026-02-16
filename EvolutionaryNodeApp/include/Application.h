@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 class Application
 {
@@ -7,3 +7,4 @@ public:
 
 	static int exec(int argc, char* argv[]);
 };
+

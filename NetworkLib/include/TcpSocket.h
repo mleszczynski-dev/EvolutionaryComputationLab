@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "AbstractSocket.h"
 
@@ -17,3 +17,4 @@ public:
 private:
 	asio::ip::tcp::socket socket_;
 };
+

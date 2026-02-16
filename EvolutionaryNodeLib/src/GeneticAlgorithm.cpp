@@ -1,4 +1,4 @@
-#include "GeneticAlgorithm.h"
+﻿#include "GeneticAlgorithm.h"
 
 #include <asio/io_context.hpp>
 #include <asio/post.hpp>
@@ -11,3 +11,4 @@ void GeneticAlgorithm::run()
 
 	context.run();
 }
+

@@ -1,4 +1,4 @@
-#include "Application.h"
+﻿#include "Application.h"
 
 #include <asio/version.hpp>
 
@@ -128,3 +128,4 @@ int main(int argc, char* argv[])
 
     return Application::exec(argc, argv);
 }
+

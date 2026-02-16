@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <AbstractSocket.h>
 
@@ -34,3 +34,4 @@ private:
 	std::unique_ptr<asio::ip::tcp::acceptor> acceptor_;
 	std::function<void(AbstractSocket&&)> callback_ = nullptr;
 };
+
