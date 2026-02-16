@@ -1,11 +1,14 @@
 #pragma once
 
+#include <AbstractSocket.h>
+
+#include "TcpServerPtr.h"
+
 #include <asio/io_context.hpp>
 #include <asio/ip/tcp.hpp>
 #include <cstdint>
+#include <functional>
 #include <memory>
-
-#include "TcpServerPtr.h"
 
 class TcpServer
 	: public std::enable_shared_from_this<TcpServer>
@@ -17,14 +20,17 @@ public:
 
 	static TcpServerPtr create(asio::io_context& context);
 
+	void setConnectionCallback(std::function<void(AbstractSocket&&)> callback);
+
 	[[nodiscard]]
 	bool listen(std::uint16_t port);
 
 protected:
 	void accept();
-	void onConnectionAccept(std::error_code ec, asio::ip::tcp::socket socket);
+	void onConnectionAccepted(std::error_code ec, asio::ip::tcp::socket socket);
 
 private:
 	asio::io_context& context_;
 	std::unique_ptr<asio::ip::tcp::acceptor> acceptor_;
+	std::function<void(AbstractSocket&&)> callback_ = nullptr;
 };

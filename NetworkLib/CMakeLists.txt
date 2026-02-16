@@ -1,8 +1,9 @@
 add_library(
 	NetworkLib
     STATIC
-	"src/TcpSocket.cpp"
-	"include/AbstractSocket.h")
+	"include/AbstractSocket.h"
+	"include/TcpSocket.h"
+	"src/TcpSocket.cpp")
 
 target_include_directories(
 	NetworkLib

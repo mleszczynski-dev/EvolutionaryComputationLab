@@ -1,5 +1,7 @@
 #include "TcpServer.h"
 
+#include <TcpSocket.h>
+
 #include <spdlog/spdlog.h>
 
 namespace
@@ -18,6 +20,11 @@ TcpServer::TcpServer(PrivateConstructor, asio::io_context& context)
 TcpServerPtr TcpServer::create(asio::io_context& context)
 {
     return std::make_shared<TcpServer>(PrivateConstructor{}, context);
+}
+
+void TcpServer::setConnectionCallback(std::function<void(AbstractSocket&&)> callback)
+{
+    callback_ = std::move(callback);
 }
 
 bool TcpServer::listen(std::uint16_t port)
@@ -59,20 +66,25 @@ void TcpServer::accept()
     {
         if (auto shared = weak.lock())
         {
-            onConnectionAccept(ec, std::move(socket));
+            onConnectionAccepted(ec, std::move(socket));
+        }
+        else
+        {
+            SPDLOG_WARN("TcpServer object already destroyed");
         }
     };
 
     acceptor_->async_accept(callback);
 }
 
-void TcpServer::onConnectionAccept(std::error_code ec, asio::ip::tcp::socket socket)
+void TcpServer::onConnectionAccepted(std::error_code ec, asio::ip::tcp::socket socket)
 {
     SPDLOG_DEBUG("");
 
     if (!ec)
     {
-        /* TODO */
+        TcpSocket tcpSocket(std::move(socket));
+        //if (callback_) callback_(std::move(tcpSocket));
     }
     else
     {
