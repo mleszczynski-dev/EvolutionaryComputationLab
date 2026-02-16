@@ -84,7 +84,9 @@ void TcpServer::onConnectionAccepted(std::error_code ec, asio::ip::tcp::socket s
     if (!ec)
     {
         TcpSocket tcpSocket(std::move(socket));
-        //if (callback_) callback_(std::move(tcpSocket));
+
+        if (callback_)
+            callback_(std::move(tcpSocket));
     }
     else
     {
@@ -93,4 +95,3 @@ void TcpServer::onConnectionAccepted(std::error_code ec, asio::ip::tcp::socket s
 
     accept();
 }
-
