@@ -148,8 +148,7 @@ int main(int argc, char* argv[])
         std::cerr << "Log init failed: " << ex.what() << std::endl;
     }
 
-    SPDLOG_INFO("{}", settings.dump(' ', 4));
+    SPDLOG_INFO("\n{}", settings.dump(4));
 
     return Application::exec(argc, argv);
 }
-
