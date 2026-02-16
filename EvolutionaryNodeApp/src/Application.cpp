@@ -20,12 +20,14 @@ int Application::exec(int argc, char* argv[])
 	}
 
 	auto server = TcpServer::create(context);
+	server->setConnectionCallback([](AbstractSocket&& socket) { SPDLOG_INFO("New connection"); });
 	if (!server->listen(port))
 	{
+		SPDLOG_ERROR("TcpServer error!");
 		return 1;
 	}
 
-	std::uint16_t peerPort = 2026;
+	std::uint16_t peerPort = 2027;
 	if (peerPort < 1024)
 	{
 		SPDLOG_ERROR("Tcp port number must be in range 1024 - 65535");
@@ -33,8 +35,10 @@ int Application::exec(int argc, char* argv[])
 	}
 
 	auto peerServer = TcpServer::create(context);
+	peerServer->setConnectionCallback([](AbstractSocket&& socket) { SPDLOG_INFO("New peer connection"); });
 	if (!peerServer->listen(peerPort))
 	{
+		SPDLOG_ERROR("TcpServer peer error!");
 		return 1;
 	}
 

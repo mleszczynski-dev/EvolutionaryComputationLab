@@ -9,6 +9,9 @@
 				"active": 1,
 				"level": "trace"
 			}
+		},
+		"server": {
+			"port":  2026
 		}
 	}
 }
