@@ -1,7 +1,14 @@
 {
 	"EvolutionaryNodeApp": {
 		"logger": {
-
+			"console": {
+				"active": 1,
+				"level": "trace"
+			},
+			"file": {
+				"active": 1,
+				"level": "trace"
+			}
 		}
 	}
 }

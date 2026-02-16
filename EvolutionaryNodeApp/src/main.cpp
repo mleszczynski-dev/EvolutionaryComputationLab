@@ -106,15 +106,17 @@ int main(int argc, char* argv[])
 
 	std::cout << app_info.dump(4, ' ') << std::endl;
 
+    std::string log_pattern = "[%Y-%m-%d %H:%M:%S.%f] [%^%l%$] [T%t] [%s:%#] [%!] %v";
+
     try
     {       
         auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
         console_sink->set_level(spdlog::level::info);
-        console_sink->set_pattern("[%H:%M:%S] [%^%l%$] %v");
+        console_sink->set_pattern(log_pattern);
 
         auto file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>("app.log", 0, 0, false);
         file_sink->set_level(spdlog::level::trace);
-        file_sink->set_pattern("[%Y-%m-%d %H:%M:%S] [%l] %v");
+        file_sink->set_pattern(log_pattern);
 
         spdlog::logger logger("multi_logger", { console_sink, file_sink });
         logger.set_level(spdlog::level::trace);
