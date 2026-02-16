@@ -17,6 +17,7 @@
 #pragma warning(pop)
 
 #include <format>
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -93,6 +94,23 @@ std::string cpu_architecture()
 #endif
 }
 
+nlohmann::json load_json_settings(std::filesystem::path path)
+{
+    nlohmann::json settings;
+
+    std::ifstream file(path);
+    if (file.is_open())
+    {
+        file >> settings;
+    }
+    else
+    {
+        std::wcerr << std::format(L"Cannot open file: {}\n", path.c_str());
+    }
+
+    return settings;
+}
+
 int main(int argc, char* argv[])
 {
 	nlohmann::ordered_json app_info;
@@ -105,6 +123,8 @@ int main(int argc, char* argv[])
 	app_info["spdlog version"] = spdlog_version();
 
 	std::cout << app_info.dump(4, ' ') << std::endl;
+
+    nlohmann::json settings = load_json_settings("settings.json");
 
     std::string log_pattern = "[%Y-%m-%d %H:%M:%S.%f] [%^%l%$] [T%t] [%s:%#] [%!] %v";
 
@@ -127,6 +147,8 @@ int main(int argc, char* argv[])
     {
         std::cerr << "Log init failed: " << ex.what() << std::endl;
     }
+
+    SPDLOG_INFO("{}", settings.dump(' ', 4));
 
     return Application::exec(argc, argv);
 }

@@ -1,17 +1,17 @@
 {
-	"EvolutionaryNodeApp": {
-		"logger": {
-			"console": {
-				"active": 1,
-				"level": "trace"
-			},
-			"file": {
-				"active": 1,
-				"level": "trace"
-			}
-		},
-		"server": {
-			"port":  2026
-		}
-	}
+  "EvolutionaryNodeApp": {
+	  "logger": {
+      "console": {
+        "active": 1,
+        "level": "trace"
+      },
+      "file": {
+        "active": 1,
+        "level": "trace"
+      }
+    },
+    "server": {
+      "port":  2026
+    }
+  }
 }
