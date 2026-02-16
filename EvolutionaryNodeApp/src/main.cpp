@@ -96,7 +96,7 @@ std::string cpu_architecture()
 
 nlohmann::json load_json_settings(std::filesystem::path path)
 {
-    nlohmann::json settings;
+    nlohmann::json settings = nlohmann::json::object();
 
     std::ifstream file(path);
     if (file.is_open())
@@ -125,28 +125,32 @@ int main(int argc, char* argv[])
 	std::cout << app_info.dump(4, ' ') << std::endl;
 
     nlohmann::json settings = load_json_settings("settings.json");
+    nlohmann::json logger = settings.value("logger", nlohmann::json::object());
+    nlohmann::json logger_console = logger.value("console", nlohmann::json::object());
+    nlohmann::json logger_file = logger.value("file", nlohmann::json::object());
 
+    std::vector<spdlog::sink_ptr> log_sinks;
     std::string log_pattern = "[%Y-%m-%d %H:%M:%S.%f] [%^%l%$] [T%t] [%s:%#] [%!] %v";
 
-    try
-    {       
-        auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
-        console_sink->set_level(spdlog::level::info);
-        console_sink->set_pattern(log_pattern);
-
-        auto file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>("app.log", 0, 0, false);
-        file_sink->set_level(spdlog::level::trace);
-        file_sink->set_pattern(log_pattern);
-
-        spdlog::logger logger("multi_logger", { console_sink, file_sink });
-        logger.set_level(spdlog::level::trace);
-
-        spdlog::set_default_logger(std::make_shared<spdlog::logger>(logger));
-    }
-    catch (const spdlog::spdlog_ex& ex)
+    if (logger_console.value("active", true))
     {
-        std::cerr << "Log init failed: " << ex.what() << std::endl;
+        auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
+        console_sink->set_level(spdlog::level::from_str(logger_console.value("level", "info")));
+        console_sink->set_pattern(log_pattern);
+        log_sinks.push_back(console_sink);
     }
+
+    if (logger_file.value("active", false))
+    {
+        auto file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>("app.log", 0, 0, false);
+        file_sink->set_level(spdlog::level::from_str(logger_file.value("level", "info")));
+        file_sink->set_pattern(log_pattern);
+        log_sinks.push_back(file_sink);
+    }
+
+    spdlog::logger multi_logger("multi_logger", log_sinks.begin(), log_sinks.end());
+    multi_logger.set_level(spdlog::level::trace);
+    spdlog::set_default_logger(std::make_shared<spdlog::logger>(multi_logger));
 
     SPDLOG_INFO("\n{}", settings.dump(4));
 
