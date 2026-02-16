@@ -13,7 +13,9 @@ set(NLOHMANN_JSON_DIR "${CMAKE_CURRENT_SOURCE_DIR}/3rd_party/json")
 set(SPDLOG_DIR "${CMAKE_CURRENT_SOURCE_DIR}/3rd_party/spdlog")
 
 add_compile_options(/utf-8)
-
+add_compile_definitions(
+    SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE
+    SPDLOG_WCHAR_TO_UTF8_SUPPORT)
 if (WIN32)
     add_compile_definitions(
         _WIN32_WINNT=0x0601
