@@ -1,4 +1,4 @@
-# Evolutionary Optimization Lab
+# Evolutionary Computation Lab
 
 
 This project aims to provide a flexible and extensible environment for testing and analyzing evolutionary algorithms.
