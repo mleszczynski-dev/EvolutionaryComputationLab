@@ -1,5 +1,6 @@
 {
   "logger": {
+    "async": true,
     "console": {
       "active": true,
       "level": "trace"

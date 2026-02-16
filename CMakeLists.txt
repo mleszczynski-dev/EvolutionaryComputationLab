@@ -2,7 +2,11 @@
 
 project ("EvolutionaryComputationLab")
 
-set(CMAKE_CXX_STANDARD 20)
+message(STATUS "C++ compiler path: ${CMAKE_CXX_COMPILER}")
+message(STATUS "C++ compiler: ${CMAKE_CXX_COMPILER_ID}")
+message(STATUS "C++ compiler version: ${CMAKE_CXX_COMPILER_VERSION}")
+
+set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 

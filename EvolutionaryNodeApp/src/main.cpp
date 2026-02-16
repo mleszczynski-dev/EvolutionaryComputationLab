@@ -10,10 +10,11 @@
 
 #pragma warning(push)
 #pragma warning(disable: 26819 6294 6385 26819 26498 26800 26495)
-#include <spdlog/spdlog.h>
-#include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/async.h>
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/daily_file_sink.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+#include <spdlog/spdlog.h>
 #pragma warning(pop)
 
 #include <format>
@@ -111,20 +112,9 @@ nlohmann::json load_json_settings(std::filesystem::path path)
     return settings;
 }
 
-int main(int argc, char* argv[])
+[[nodiscard]]
+auto initialize_spdlog(const nlohmann::json& settings)
 {
-	nlohmann::ordered_json app_info;
-	app_info["compiler name"] = compiler_name();
-	app_info["compiler version"] = compiler_version();
-	app_info["cpu architecture"] = cpu_architecture();
-	app_info["build type"] = build_type();
-	app_info["asio version"] = asio_version();
-	app_info["nlohmann/json version"] = nlohmann_json_version();
-	app_info["spdlog version"] = spdlog_version();
-
-	std::cout << app_info.dump(4, ' ') << std::endl;
-
-    nlohmann::json settings = load_json_settings("settings.json");
     nlohmann::json logger = settings.value("logger", nlohmann::json::object());
     nlohmann::json logger_console = logger.value("console", nlohmann::json::object());
     nlohmann::json logger_file = logger.value("file", nlohmann::json::object());
@@ -137,6 +127,7 @@ int main(int argc, char* argv[])
         auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
         console_sink->set_level(spdlog::level::from_str(logger_console.value("level", "info")));
         console_sink->set_pattern(log_pattern);
+
         log_sinks.push_back(console_sink);
     }
 
@@ -145,12 +136,46 @@ int main(int argc, char* argv[])
         auto file_sink = std::make_shared<spdlog::sinks::daily_file_sink_mt>("app.log", 0, 0, false);
         file_sink->set_level(spdlog::level::from_str(logger_file.value("level", "info")));
         file_sink->set_pattern(log_pattern);
+
         log_sinks.push_back(file_sink);
     }
 
-    spdlog::logger multi_logger("multi_logger", log_sinks.begin(), log_sinks.end());
-    multi_logger.set_level(spdlog::level::trace);
-    spdlog::set_default_logger(std::make_shared<spdlog::logger>(multi_logger));
+    std::shared_ptr<spdlog::logger> multi_sink_logger = nullptr;
+
+    if (logger.value("async", true))
+    {
+        spdlog::init_thread_pool(8192, 1);
+        multi_sink_logger =
+            std::make_shared<spdlog::async_logger>("logger", log_sinks.begin(), log_sinks.end(), spdlog::thread_pool(), spdlog::async_overflow_policy::block);
+    }
+    else
+    {
+        multi_sink_logger = 
+            std::make_shared<spdlog::logger>("logger", log_sinks.begin(), log_sinks.end());
+    }
+
+    multi_sink_logger->set_level(spdlog::level::trace);
+    spdlog::set_default_logger(multi_sink_logger);
+
+    using ScopeExit = std::unique_ptr<void, std::function<void(void*)>>;
+    return ScopeExit(nullptr, [](void*) { spdlog::shutdown(); });
+}
+
+int main(int argc, char* argv[])
+{
+	nlohmann::ordered_json app_info;
+	app_info["compiler name"] = compiler_name();
+	app_info["compiler version"] = compiler_version();
+	app_info["cpu architecture"] = cpu_architecture();
+	app_info["build type"] = build_type();
+	app_info["asio version"] = asio_version();
+	app_info["nlohmann/json version"] = nlohmann_json_version();
+	app_info["spdlog version"] = spdlog_version();
+
+	std::cout << app_info.dump(4) << std::endl;
+
+    nlohmann::json settings = load_json_settings("settings.json");
+    auto _ = initialize_spdlog(settings);
 
     SPDLOG_INFO("\n{}", settings.dump(4));
 
