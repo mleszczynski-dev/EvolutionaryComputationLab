@@ -1,12 +1,12 @@
 #pragma once
 
-#include "AbstractReply.h"
+#include "AbstractMessage.h"
 
-class AuthorizationReply
-	: public AbstractReply
+class AbstractNotification
+	: public AbstractMessage
 {
 public:
-	inline static const std::string type = "AuthorizationReply";
+	~AbstractNotification() override = default;
 
 	void toJson(nlohmann::json& document) const override = 0;
 	void fromJson(const nlohmann::json& document) override = 0;

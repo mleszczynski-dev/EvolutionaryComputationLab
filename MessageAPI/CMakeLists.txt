@@ -12,7 +12,7 @@ add_library(
 	"src/AbstractReply.cpp"
 	"src/AbstractRequest.cpp"
 	"src/AuthorizationReply.cpp"
-	"src/AuthorizationRequest.cpp")
+	"src/AuthorizationRequest.cpp" "include/AbstractNotification.h" "src/AbstractNotification.cpp")
 
 target_include_directories(
 	${TargetName}

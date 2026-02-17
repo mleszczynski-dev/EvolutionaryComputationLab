@@ -2,10 +2,14 @@
 
 #include "AbstractRequest.h"
 
+#include <string>
+
 class AuthorizationRequest
 	: public AbstractRequest
 {
 public:
-	void toJson(nlohmann::json& document) const override;
-	void fromJson(const nlohmann::json& document) override;
+	inline static const std::string type = "AuthorizationRequest";
+
+	void toJson(nlohmann::json& document) const override = 0;
+	void fromJson(const nlohmann::json& document) override = 0;
 };
