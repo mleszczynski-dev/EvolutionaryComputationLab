@@ -4,7 +4,15 @@ add_library(
 	${TargetName}
     STATIC
 	"include/AbstractMessage.h"
-    "src/AbstractMessage.cpp")
+	"include/AbstractReply.h"
+	"include/AbstractRequest.h"
+	"include/AuthorizationReply.h"
+	"include/AuthorizationRequest.h"
+    "src/AbstractMessage.cpp"
+	"src/AbstractReply.cpp"
+	"src/AbstractRequest.cpp"
+	"src/AuthorizationReply.cpp"
+	"src/AuthorizationRequest.cpp")
 
 target_include_directories(
 	${TargetName}
