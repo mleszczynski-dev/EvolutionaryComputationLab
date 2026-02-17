@@ -6,11 +6,11 @@ add_library(
 	"include/AbstractClient.h"
 	"include/AbstractServer.h"
 	"include/AbstractSocket.h"
-	"include/Client.h"
+	"include/TcpClient.h"
 	"include/TcpSocket.h"
 	"src/AbstractClient.cpp"
 	"src/AbstractServer.cpp"
-	"src/Client.cpp"
+	"src/TcpClient.cpp"
 	"src/TcpSocket.cpp")
 
 target_include_directories(

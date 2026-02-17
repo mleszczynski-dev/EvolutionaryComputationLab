@@ -1,7 +1,7 @@
 #pragma once
 
 #include "AbstractClient.h"
-#include "ClientPtr.h"
+#include "TcpClientPtr.h"
 
 #include <asio/io_context.hpp>
 #include <asio/ip/tcp.hpp>
@@ -9,17 +9,17 @@
 #include <memory>
 #include <string>
 
-class Client
-	: public std::enable_shared_from_this<Client>
+class TcpClient
+	: public std::enable_shared_from_this<TcpClient>
 	, public AbstractClient
 {
 	struct PrivateConstructor {};
 
 public:
-	explicit Client(PrivateConstructor, asio::io_context& context);
-	~Client() override;
+	explicit TcpClient(PrivateConstructor, asio::io_context& context);
+	~TcpClient() override;
 
-	static ClientPtr create(asio::io_context& context);
+	static TcpClientPtr create(asio::io_context& context);
 
 	void connectTo(std::string host, std::uint16_t port);
 	//void reconnect();

@@ -1,10 +1,10 @@
-#include "Client.h"
+#include "TcpClient.h"
 
 #include <asio/connect.hpp>
 #include <asio/write.hpp>
 #include <spdlog/spdlog.h>
 
-Client::Client(PrivateConstructor, asio::io_context& context)
+TcpClient::TcpClient(PrivateConstructor, asio::io_context& context)
 	: context_(context)
 	, resolver_(context_)
 	, socket_(context_)
@@ -12,17 +12,17 @@ Client::Client(PrivateConstructor, asio::io_context& context)
 
 }
 
-Client::~Client()
+TcpClient::~TcpClient()
 {
 
 }
 
-ClientPtr Client::create(asio::io_context& context)
+TcpClientPtr TcpClient::create(asio::io_context& context)
 {
-	return std::make_shared<Client>(PrivateConstructor{}, context);
+	return std::make_shared<TcpClient>(PrivateConstructor{}, context);
 }
 
-void Client::connectTo(std::string host, std::uint16_t port)
+void TcpClient::connectTo(std::string host, std::uint16_t port)
 {
 	SPDLOG_INFO("{}:{}", host, port);
 
@@ -45,7 +45,7 @@ void Client::connectTo(std::string host, std::uint16_t port)
 	resolver_.async_resolve(host_, std::to_string(port_), callback);
 }
 
-void Client::onConnectionResolved(const asio::error_code& ec, asio::ip::tcp::resolver::results_type endpoints)
+void TcpClient::onConnectionResolved(const asio::error_code& ec, asio::ip::tcp::resolver::results_type endpoints)
 {
 	SPDLOG_DEBUG("");
 
@@ -71,7 +71,7 @@ void Client::onConnectionResolved(const asio::error_code& ec, asio::ip::tcp::res
 	}
 }
 
-void Client::onConnectionEstablished(const asio::error_code& ec, const asio::ip::tcp::endpoint& endpoint)
+void TcpClient::onConnectionEstablished(const asio::error_code& ec, const asio::ip::tcp::endpoint& endpoint)
 {
 	if (!ec)
 	{

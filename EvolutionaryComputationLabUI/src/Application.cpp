@@ -1,6 +1,6 @@
 #include "Application.h"
 
-#include <Client.h>
+#include <TcpClient.h>
 
 #include <asio/io_context.hpp>
 #include <asio/executor_work_guard.hpp>
@@ -19,7 +19,7 @@ int Application::exec(int argc, char* argv[])
 		return 0;
 	}
 
-	auto client = Client::create(context);
+	auto client = TcpClient::create(context);
 	client->connectTo("localhost", port);
 	//server->setConnectionCallback([](AbstractSocket&& socket) { SPDLOG_INFO("New connection"); });
 	//if (!server->listen(port))
