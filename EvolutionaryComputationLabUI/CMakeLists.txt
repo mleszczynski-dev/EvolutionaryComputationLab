@@ -1,4 +1,4 @@
-﻿set(TargetName "EvolutionaryNodeApp")
+set(TargetName "EvolutionaryComputationLabUI")
 
 add_executable(
     ${TargetName}
@@ -9,7 +9,7 @@ add_executable(
 target_link_libraries(
     ${TargetName}
     PRIVATE
-    EvolutionaryNodeLib)
+    NetworkLib)
 
 target_include_directories(
     ${TargetName}

@@ -17,6 +17,11 @@ TcpServer::TcpServer(PrivateConstructor, asio::io_context& context)
 
 }
 
+TcpServer::~TcpServer()
+{
+
+}
+
 TcpServerPtr TcpServer::create(asio::io_context& context)
 {
     return std::make_shared<TcpServer>(PrivateConstructor{}, context);

@@ -1,12 +1,20 @@
+set(TargetName "NetworkLib")
+
 add_library(
-	NetworkLib
+	${TargetName}
     STATIC
+	"include/AbstractClient.h"
+	"include/AbstractServer.h"
 	"include/AbstractSocket.h"
+	"include/Client.h"
 	"include/TcpSocket.h"
+	"src/AbstractClient.cpp"
+	"src/AbstractServer.cpp"
+	"src/Client.cpp"
 	"src/TcpSocket.cpp")
 
 target_include_directories(
-	NetworkLib
+	${TargetName}
 	PUBLIC
 	${CMAKE_CURRENT_SOURCE_DIR}/include
     PRIVATE

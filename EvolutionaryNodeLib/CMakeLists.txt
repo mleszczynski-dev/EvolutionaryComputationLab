@@ -1,19 +1,21 @@
-﻿add_library(
-	EvolutionaryNodeLib
+﻿set(TargetName "EvolutionaryNodeLib")
+
+add_library(
+	${TargetName}
     STATIC
 	"include/GeneticAlgorithm.h"
-	"src/GeneticAlgorithm.cpp"
 	"include/TcpServer.h"
 	"include/TcpServerPtr.h"
+	"src/GeneticAlgorithm.cpp"
 	"src/TcpServer.cpp")
 
 target_link_libraries(
-    EvolutionaryNodeLib
+    ${TargetName}
     PUBLIC
     NetworkLib)
 
 target_include_directories(
-	EvolutionaryNodeLib
+	${TargetName}
 	PUBLIC
 	${CMAKE_CURRENT_SOURCE_DIR}/include
     PRIVATE

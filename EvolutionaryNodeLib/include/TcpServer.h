@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include <AbstractServer.h>
 #include <AbstractSocket.h>
 
 #include "TcpServerPtr.h"
@@ -12,11 +13,13 @@
 
 class TcpServer
 	: public std::enable_shared_from_this<TcpServer>
+	, public AbstractServer
 {
 	struct PrivateConstructor {};
 
 public:
 	explicit TcpServer(PrivateConstructor, asio::io_context& context);
+	~TcpServer() override;
 
 	static TcpServerPtr create(asio::io_context& context);
 
