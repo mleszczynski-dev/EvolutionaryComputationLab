@@ -1,4 +1,8 @@
-set(TargetName "EvolutionaryComputationLabUI")
+set(TargetName "EvolutionaryComputationUI")
+
+find_package(Qt6 REQUIRED COMPONENTS Widgets)
+
+qt_standard_project_setup()
 
 add_executable(
     ${TargetName}
@@ -9,7 +13,8 @@ add_executable(
 target_link_libraries(
     ${TargetName}
     PRIVATE
-    NetworkLib)
+    NetworkLib
+    Qt6::Widgets)
 
 target_include_directories(
     ${TargetName}
