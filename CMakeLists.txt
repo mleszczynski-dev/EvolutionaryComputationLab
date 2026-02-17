@@ -16,6 +16,8 @@ set(GOOGLE_TEST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/3rd_party/googletest/googletest
 set(NLOHMANN_JSON_DIR "${CMAKE_CURRENT_SOURCE_DIR}/3rd_party/json")
 set(SPDLOG_DIR "${CMAKE_CURRENT_SOURCE_DIR}/3rd_party/spdlog")
 
+set(CMAKE_PREFIX_PATH "C:/Qt/6.8.3/msvc2022")
+
 add_compile_options(/utf-8)
 
 add_compile_definitions(
@@ -31,7 +33,9 @@ if (WIN32)
 endif()
 
 add_subdirectory(3rd_party)
-add_subdirectory(EvolutionaryComputationLabUI)
+add_subdirectory(CommonLib)
+add_subdirectory(EvolutionaryComputationApp)
+add_subdirectory(EvolutionaryComputationUI)
 add_subdirectory(EvolutionaryNodeApp)
 add_subdirectory(EvolutionaryNodeLib)
 add_subdirectory(EvolutionaryNodeTest)

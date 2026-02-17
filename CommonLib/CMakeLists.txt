@@ -3,7 +3,8 @@ set(TargetName "CommonLib")
 add_library(
 	${TargetName}
     STATIC
-	"include/dummy.h")
+	"include/dummy.h"
+    "src/dummy.cpp")
 
 target_include_directories(
 	${TargetName}
