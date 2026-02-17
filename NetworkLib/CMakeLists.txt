@@ -7,17 +7,24 @@ add_library(
 	"include/AbstractServer.h"
 	"include/AbstractSocket.h"
 	"include/TcpClient.h"
+	"include/TcpServer.h"
+	"include/TcpServerPtr.h"
 	"include/TcpSocket.h"
 	"src/AbstractClient.cpp"
 	"src/AbstractServer.cpp"
 	"src/TcpClient.cpp"
-	"src/TcpSocket.cpp")
+	"src/TcpServer.cpp"
+	"src/TcpSocket.cpp"
+)
+
+target_link_libraries(
+    ${TargetName}
+    PRIVATE
+	CommonLib
+)
 
 target_include_directories(
 	${TargetName}
 	PUBLIC
 	${CMAKE_CURRENT_SOURCE_DIR}/include
-    PRIVATE
-	${ASIO_DIR}/include
-	${NLOHMANN_JSON_DIR}/include
-	${SPDLOG_DIR}/include)
+)
