@@ -36,6 +36,6 @@ add_custom_command(
 
 if(WIN32)
     add_custom_command(TARGET ${TargetName} POST_BUILD
-        COMMAND "${Qt6_DIR}/../../../bin/windeployqt.exe" $<TARGET_FILE:${TargetName}>
+        COMMAND "${Qt6_DIR}/../../../bin/windeployqt6.exe" --no-translations $<TARGET_FILE:${TargetName}>
     )
 endif()
