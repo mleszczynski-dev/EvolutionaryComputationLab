@@ -1,10 +1,3 @@
-```mermaid
-graph TD
-    A[Start] --> B[Proces]
-    B --> C{Decyzja}
-    C -->|Tak| D[Opcja 1]
-    C -->|Nie| E[Opcja 2]
-
 # Evolutionary Computation Lab
 
 
@@ -13,6 +6,9 @@ The main goal is to create a platform that enables researchers to experiment wit
 
 
 The project is currently under active development. The project is not ready for use until the official release is published.
+
+
+![Architecture of distributed computing nodes](doc/architecture.png)
 
 
 ## Getting Started
