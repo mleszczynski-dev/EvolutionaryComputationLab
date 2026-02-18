@@ -23,6 +23,5 @@ target_include_directories(
 
 add_custom_command(
     TARGET ${TargetName} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/settings.json $<TARGET_FILE_DIR:${TargetName}>/settings.json
-    COMMENT "Copy settings.json"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/settings.json $<TARGET_FILE_DIR:${TargetName}>
 )
