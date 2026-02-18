@@ -16,8 +16,6 @@ set(GOOGLE_TEST_DIR "${CMAKE_CURRENT_SOURCE_DIR}/3rd_party/googletest/googletest
 set(NLOHMANN_JSON_DIR "${CMAKE_CURRENT_SOURCE_DIR}/3rd_party/json")
 set(SPDLOG_DIR "${CMAKE_CURRENT_SOURCE_DIR}/3rd_party/spdlog")
 
-set(CMAKE_PREFIX_PATH "C:/Qt/6.8.3/msvc2022_64")
-
 if(MSVC)
     add_compile_options(/utf-8)
 endif()
