@@ -1,3 +1,10 @@
+```mermaid
+graph TD
+    A[Start] --> B[Proces]
+    B --> C{Decyzja}
+    C -->|Tak| D[Opcja 1]
+    C -->|Nie| E[Opcja 2]
+
 # Evolutionary Computation Lab
 
 
@@ -14,10 +21,3 @@ After cloning the repository, make sure to initialize and update all submodules:
 
 ```bash
 git submodule update --init --recursive --depth 1
-
-```mermaid
-graph TD
-    A[Start] --> B[Proces]
-    B --> C{Decyzja}
-    C -->|Tak| D[Opcja 1]
-    C -->|Nie| E[Opcja 2]
