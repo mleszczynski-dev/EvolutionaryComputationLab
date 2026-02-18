@@ -4,8 +4,12 @@ add_library(
 	${TargetName}
     STATIC
     "include/AppInfo.h"
+	"include/JsonFile.h"
+	"include/LoggerInitializer.h"
 	"src/AppInfo.cpp"
- "include/LoggerInitializer.h" "src/LoggerInitializer.cpp")
+	"src/JsonFile.cpp"
+	"src/LoggerInitializer.cpp"
+)
 
 target_include_directories(
 	${TargetName}

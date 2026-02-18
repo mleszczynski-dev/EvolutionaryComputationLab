@@ -1,4 +1,21 @@
-int main(int argc, char argv[])
+//#include "Application.h"
+#include "AppInfo.h"
+#include "JsonFile.h"
+#include "LoggerInitializer.h"
+
+#include <spdlog/spdlog.h>
+
+#include <iostream>
+
+int main(int argc, char* argv[])
 {
-	return 0;
+    std::cout << AppInfo::toString() << std::endl;
+
+    nlohmann::json settings = JsonFile::load("settings.json");
+
+    LoggerInitializer logger(settings.value("logger", nlohmann::json::object()));
+
+    SPDLOG_INFO("\n{}", settings.dump(4));
+
+    return 0;// Application::exec(argc, argv);
 }

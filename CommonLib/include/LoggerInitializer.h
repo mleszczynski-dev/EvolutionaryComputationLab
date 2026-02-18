@@ -15,6 +15,12 @@ public:
     LoggerInitializer& operator=(const LoggerInitializer& rhs) = delete;
     LoggerInitializer& operator=(LoggerInitializer&& rhs) = delete;
 
+    static void* operator new(std::size_t) = delete;
+    static void* operator new[](std::size_t) = delete;
+
+    static void* operator new(std::size_t, void*) = delete;
+    static void* operator new[](std::size_t, void*) = delete;
+
 private:
     static bool initialized;
 };
