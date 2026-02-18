@@ -17,7 +17,7 @@ Instances of EvolutionaryComputationNode form a computational cluster that enabl
 
 The diagram below illustrates the system architecture.
 
-<p align="center"> <img src="docs/architecture.png" alt="Architecture diagram"> </p>
+![System architecture](docs/architecture.svg)
 
 The island model can be configured by assigning selected nodes to a newly created computation.
 Each node can run multiple computations simultaneously (see Node C above); the only limiting factor is the available hardware resources.
