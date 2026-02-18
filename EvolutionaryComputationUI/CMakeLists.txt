@@ -1,8 +1,6 @@
 set(TargetName "EvolutionaryComputationUI")
 
-find_package(Qt6 REQUIRED COMPONENTS Widgets)
-
-qt_standard_project_setup()
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
 
 add_executable(
     ${TargetName}
@@ -11,11 +9,16 @@ add_executable(
     "src/main.cpp"
 )
 
+qt_standard_project_setup()
+qt_finalize_target(${TargetName} TARGET_PLUGINS platforms)
+
 target_link_libraries(
     ${TargetName}
     PRIVATE
     CommonLib
     NetworkLib
+    Qt6::Core
+    Qt6::Gui
     Qt6::Widgets
 )
 
@@ -26,11 +29,13 @@ target_include_directories(
 )
 
 add_custom_command(
-    TARGET
-    ${TargetName}
-    POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            ${CMAKE_CURRENT_SOURCE_DIR}/settings.json
-            $<TARGET_FILE_DIR:${TargetName}>/settings.json
-    COMMENT "Copying settings.json"
+    TARGET ${TargetName} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/settings.json $<TARGET_FILE_DIR:${TargetName}>/settings.json
+    COMMENT "Copy settings.json"
 )
+
+if(WIN32)
+    add_custom_command(TARGET ${TargetName} POST_BUILD
+        COMMAND "${Qt6_DIR}/../../../bin/windeployqt.exe" $<TARGET_FILE:${TargetName}>
+    )
+endif()

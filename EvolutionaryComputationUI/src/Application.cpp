@@ -6,10 +6,13 @@
 #include <asio/executor_work_guard.hpp>
 #include <spdlog/spdlog.h>
 
+#include <QApplication>
+#include <QMainWindow>
+
 int Application::exec(int argc, char* argv[])
 {
 	SPDLOG_INFO("");
-
+#if 0
 	asio::io_context context;
 
 	std::uint16_t port = 2026;
@@ -29,6 +32,29 @@ int Application::exec(int argc, char* argv[])
 	//}
 
 	context.run();
+#endif
 
-	return 0;
+	QApplication app(argc, argv);
+
+	QWidget window;
+	window.setWindowTitle("Prosty GUI w Qt");
+#if 0
+	QVBoxLayout* layout = new QVBoxLayout(&window);
+
+	QLabel* label = new QLabel("Kliknij przycisk");
+	layout->addWidget(label);
+
+	QPushButton* button = new QPushButton("Kliknij mnie");
+	layout->addWidget(button);
+
+	// Po??czenie sygna?u z funkcj?
+	QObject::connect(button, &QPushButton::clicked, [=]() {
+		label->setText("Przycisk klikni?ty!");
+		});
+
+	window.setLayout(layout);
+#endif
+	window.show();
+
+	return app.exec();
 }
