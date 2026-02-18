@@ -1,17 +1,23 @@
 #include "Application.h"
 
+#include "JsonFile.h"
+#include "LoggerInitializer.h"
 #include <TcpClient.h>
 
-#include <asio/io_context.hpp>
 #include <asio/executor_work_guard.hpp>
-#include <spdlog/spdlog.h>
-
+#include <asio/io_context.hpp>
 #include <QApplication>
 #include <QMainWindow>
+#include <spdlog/spdlog.h>
 
 int Application::exec(int argc, char* argv[])
 {
-	SPDLOG_INFO("");
+	nlohmann::json settings = JsonFile::load("settings.json");
+
+	LoggerInitializer logger(settings.value("logger", nlohmann::json::object()));
+
+	SPDLOG_INFO("\n{}", settings.dump(4));
+
 #if 0
 	asio::io_context context;
 

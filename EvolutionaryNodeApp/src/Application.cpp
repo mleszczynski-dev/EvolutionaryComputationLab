@@ -6,9 +6,17 @@
 #include <asio/executor_work_guard.hpp>
 #include <spdlog/spdlog.h>
 
+#include "JsonFile.h"
+#include "LoggerInitializer.h"
+#include <TcpClient.h>
+
 int Application::exec(int argc, char* argv[])
 {
-	SPDLOG_INFO("");
+	nlohmann::json settings = JsonFile::load("settings.json");
+
+	LoggerInitializer logger(settings.value("logger", nlohmann::json::object()));
+
+	SPDLOG_INFO("\n{}", settings.dump(4));
 
 	asio::io_context context;
 
