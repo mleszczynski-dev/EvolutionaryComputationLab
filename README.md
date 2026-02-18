@@ -17,7 +17,7 @@ Instances of EvolutionaryComputationNode form a computational cluster that enabl
 
 The diagram below illustrates the system architecture.
 
-<!-- ![System architecture](docs/architecture.svg) -->
+![System architecture](docs/architecture.svg)
 
 The island model can be configured by assigning selected nodes to a newly created computation.
 Each node can run multiple computations simultaneously (see Node C above). The only limiting factor is the available hardware resources.
@@ -36,3 +36,4 @@ git submodule update --init --recursive --depth 1
 ```
 
 Qt6 is required to build EvolutionaryComputationUI. To ensure CMake can find the library, set the environment variable `CMAKE_PREFIX_PATH` to the path of your Qt installation, for example: `C:/Qt/6.x.x/some_build_tools_dir`.
+
