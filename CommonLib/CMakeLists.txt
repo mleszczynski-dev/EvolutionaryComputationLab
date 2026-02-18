@@ -5,7 +5,7 @@ add_library(
     STATIC
     "include/AppInfo.h"
 	"src/AppInfo.cpp"
-)
+ "include/LoggerInitializer.h" "src/LoggerInitializer.cpp")
 
 target_include_directories(
 	${TargetName}
