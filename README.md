@@ -20,7 +20,7 @@ The diagram below illustrates the system architecture.
 ![System architecture](docs/architecture.svg)
 
 The island model can be configured by assigning selected nodes to a newly created computation.
-Each node can run multiple computations simultaneously (see Node C above); the only limiting factor is the available hardware resources.
+Each node can run multiple computations simultaneously (see Node C above). The only limiting factor is the available hardware resources.
 
 In the final version, nodes will be able to run on major operating systems — Windows, macOS (only for ARM), Linux — with support for both CPU and GPU execution.
 
