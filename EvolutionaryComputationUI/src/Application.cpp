@@ -44,23 +44,8 @@ int Application::exec(int argc, char* argv[])
 	QApplication app(argc, argv);
 
 	MainWindow window;
-	window.setWindowTitle("Prosty GUI w Qt");
-#if 0
-	QVBoxLayout* layout = new QVBoxLayout(&window);
-
-	QLabel* label = new QLabel("Kliknij przycisk");
-	layout->addWidget(label);
-
-	QPushButton* button = new QPushButton("Kliknij mnie");
-	layout->addWidget(button);
-
-	// Po??czenie sygna?u z funkcj?
-	QObject::connect(button, &QPushButton::clicked, [=]() {
-		label->setText("Przycisk klikni?ty!");
-		});
-
-	window.setLayout(layout);
-#endif
+	window.setWindowTitle("Evolutionary Computation UI");
+	//window.setWindowIcon();
 	window.show();
 
 	return app.exec();
