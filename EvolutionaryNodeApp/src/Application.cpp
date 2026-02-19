@@ -1,14 +1,13 @@
 ﻿#include "Application.h"
 
+#include <JsonFile.h>
+#include <LoggerInitializer.h>
+#include <TcpClient.h>
 #include <TcpServer.h>
 
 #include <asio/io_context.hpp>
 #include <asio/executor_work_guard.hpp>
 #include <spdlog/spdlog.h>
-
-#include "JsonFile.h"
-#include "LoggerInitializer.h"
-#include <TcpClient.h>
 
 int Application::exec(int argc, char* argv[])
 {

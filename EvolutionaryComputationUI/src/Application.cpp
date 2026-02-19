@@ -1,13 +1,14 @@
 #include "Application.h"
 
-#include "JsonFile.h"
-#include "LoggerInitializer.h"
+#include "MainWindow.h"
+
+#include <JsonFile.h>
+#include <LoggerInitializer.h>
 #include <TcpClient.h>
 
 #include <asio/executor_work_guard.hpp>
 #include <asio/io_context.hpp>
 #include <QApplication>
-#include <QMainWindow>
 #include <spdlog/spdlog.h>
 
 int Application::exec(int argc, char* argv[])
@@ -42,7 +43,7 @@ int Application::exec(int argc, char* argv[])
 
 	QApplication app(argc, argv);
 
-	QWidget window;
+	MainWindow window;
 	window.setWindowTitle("Prosty GUI w Qt");
 #if 0
 	QVBoxLayout* layout = new QVBoxLayout(&window);

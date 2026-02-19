@@ -2,14 +2,19 @@ set(TargetName "EvolutionaryComputationUI")
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
 
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTORCC ON)
+
 add_executable(
     ${TargetName}
     "include/Application.h"
+    "include/MainWindow.h"
     "src/Application.cpp"
     "src/main.cpp"
+    "src/MainWindow.cpp"
 )
 
-qt_standard_project_setup()
 qt_finalize_target(${TargetName} TARGET_PLUGINS platforms)
 
 target_link_libraries(
