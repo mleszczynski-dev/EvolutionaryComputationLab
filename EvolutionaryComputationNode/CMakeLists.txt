@@ -12,7 +12,7 @@ target_link_libraries(
     PRIVATE
     CommonLib
     NetworkLib
-    EvolutionaryNodeLib
+    EvolutionaryComputationNodeLib
 )
 
 target_include_directories(

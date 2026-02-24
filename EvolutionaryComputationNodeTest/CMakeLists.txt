@@ -9,7 +9,7 @@ target_link_libraries(
     ${TargetName}
     PRIVATE
     CommonLib
-    EvolutionaryNodeLib
+    EvolutionaryComputationNodeLib
 )
 
 target_include_directories(
