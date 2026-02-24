@@ -1,4 +1,4 @@
-﻿set(TargetName "EvolutionaryNodeTest")
+﻿set(TargetName "EvolutionaryComputationNodeTest")
 
 add_executable(
     ${TargetName}

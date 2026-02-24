@@ -1,9 +1,7 @@
-﻿set(TargetName "EvolutionaryNodeApp")
+set(TargetName "EvolutionaryComputationLab")
 
 add_executable(
     ${TargetName}
-    "include/Application.h"
-    "src/Application.cpp"
     "src/main.cpp"
 )
 
@@ -12,7 +10,6 @@ target_link_libraries(
     PRIVATE
     CommonLib
     NetworkLib
-    EvolutionaryNodeLib
 )
 
 target_include_directories(

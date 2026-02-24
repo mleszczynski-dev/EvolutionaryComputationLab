@@ -1,4 +1,4 @@
-﻿set(TargetName "EvolutionaryNodeLib")
+﻿set(TargetName "EvolutionaryComputationNodeLib")
 
 add_library(
 	${TargetName}
