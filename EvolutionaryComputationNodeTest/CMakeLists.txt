@@ -1,19 +1,19 @@
-﻿set(TargetName "EvolutionaryComputationNodeTest")
+﻿project("EvolutionaryComputationNodeTest" LANGUAGES CXX)
 
 add_executable(
-    ${TargetName}
+    ${PROJECT_NAME}
     "src/main.cpp"
 )
 
 target_link_libraries(
-    ${TargetName}
+    ${PROJECT_NAME}
     PRIVATE
     CommonLib
     EvolutionaryComputationNodeLib
 )
 
 target_include_directories(
-    ${TargetName}
+    ${PROJECT_NAME}
     PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )

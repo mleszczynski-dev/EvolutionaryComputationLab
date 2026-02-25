@@ -1,7 +1,7 @@
-set(TargetName "CommonLib")
+project("CommonLib" LANGUAGES CXX)
 
 add_library(
-	${TargetName}
+	${PROJECT_NAME}
     STATIC
     "include/AppInfo.h"
 	"include/JsonFile.h"
@@ -12,7 +12,7 @@ add_library(
 )
 
 target_include_directories(
-	${TargetName}
+	${PROJECT_NAME}
 	PUBLIC
 	${CMAKE_CURRENT_SOURCE_DIR}/include
 	${ASIO_DIR}/include

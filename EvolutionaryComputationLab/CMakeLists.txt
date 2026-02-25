@@ -1,24 +1,24 @@
-set(TargetName "EvolutionaryComputationLab")
+project("EvolutionaryComputationLab" LANGUAGES CXX)
 
 add_executable(
-    ${TargetName}
+    ${PROJECT_NAME}
     "src/main.cpp"
 )
 
 target_link_libraries(
-    ${TargetName}
+    ${PROJECT_NAME}
     PRIVATE
     CommonLib
     NetworkLib
 )
 
 target_include_directories(
-    ${TargetName}
+    ${PROJECT_NAME}
     PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 add_custom_command(
-    TARGET ${TargetName} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/settings.json $<TARGET_FILE_DIR:${TargetName}>
+    TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/settings.json $<TARGET_FILE_DIR:${PROJECT_NAME}>
 )

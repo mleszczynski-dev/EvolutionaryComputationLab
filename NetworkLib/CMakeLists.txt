@@ -1,7 +1,7 @@
-set(TargetName "NetworkLib")
+project("NetworkLib" LANGUAGES CXX)
 
 add_library(
-	${TargetName}
+	${PROJECT_NAME}
     STATIC
 	"include/AbstractClient.h"
 	"include/AbstractServer.h"
@@ -18,13 +18,13 @@ add_library(
 )
 
 target_link_libraries(
-    ${TargetName}
+    ${PROJECT_NAME}
     PRIVATE
 	CommonLib
 )
 
 target_include_directories(
-	${TargetName}
+	${PROJECT_NAME}
 	PUBLIC
 	${CMAKE_CURRENT_SOURCE_DIR}/include
 )

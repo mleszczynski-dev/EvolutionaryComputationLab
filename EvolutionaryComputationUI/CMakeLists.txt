@@ -1,4 +1,4 @@
-set(TargetName "EvolutionaryComputationUI")
+project("EvolutionaryComputationUI" LANGUAGES CXX)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
 
@@ -7,7 +7,7 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTORCC ON)
 
 add_executable(
-    ${TargetName}
+    ${PROJECT_NAME}
     "include/Application.h"
     "include/MainWindow.h"
     "src/Application.cpp"
@@ -15,10 +15,10 @@ add_executable(
     "src/MainWindow.cpp"
 )
 
-qt_finalize_target(${TargetName} TARGET_PLUGINS platforms)
+qt_finalize_target(${PROJECT_NAME} TARGET_PLUGINS platforms)
 
 target_link_libraries(
-    ${TargetName}
+    ${PROJECT_NAME}
     PRIVATE
     CommonLib
     NetworkLib
@@ -28,18 +28,18 @@ target_link_libraries(
 )
 
 target_include_directories(
-    ${TargetName}
+    ${PROJECT_NAME}
     PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
 add_custom_command(
-    TARGET ${TargetName} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/settings.json $<TARGET_FILE_DIR:${TargetName}>
+    TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/settings.json $<TARGET_FILE_DIR:${PROJECT_NAME}>
 )
 
 if(WIN32)
-    add_custom_command(TARGET ${TargetName} POST_BUILD
-        COMMAND "${Qt6_DIR}/../../../bin/windeployqt6.exe" --no-translations $<TARGET_FILE:${TargetName}>
+    add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND "${Qt6_DIR}/../../../bin/windeployqt6.exe" --no-translations $<TARGET_FILE:${PROJECT_NAME}>
     )
 endif()

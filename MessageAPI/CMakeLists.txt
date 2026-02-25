@@ -1,7 +1,7 @@
-set(TargetName "MessageAPI")
+project("MessageAPI" LANGUAGES CXX)
 
 add_library(
-	${TargetName}
+	${PROJECT_NAME}
     STATIC
 	"include/AbstractMessage.h"
 	"include/AbstractNotification.h"
@@ -18,13 +18,13 @@ add_library(
 )
 
 target_link_libraries(
-    ${TargetName}
+    ${PROJECT_NAME}
     PRIVATE
 	CommonLib
 )
 
 target_include_directories(
-	${TargetName}
+	${PROJECT_NAME}
 	PUBLIC
 	${CMAKE_CURRENT_SOURCE_DIR}/include
 )
