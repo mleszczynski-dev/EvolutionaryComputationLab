@@ -19,12 +19,22 @@ set(QML_IMPORT_PATH ${QT_QML_OUTPUT_DIRECTORY}
 find_package(Qt6 6.8 REQUIRED COMPONENTS Core Gui Widgets Qml Quick QuickTimeline ShaderTools)
 qt_standard_project_setup()
 
-
 qt_add_executable(${CMAKE_PROJECT_NAME})
 qt_add_resources(${CMAKE_PROJECT_NAME} "configuration"
     PREFIX "/"
     FILES
         qtquickcontrols2.conf)
+
+add_custom_command(
+    TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/settings.json $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
+)
+
+if(WIN32)
+    add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+        COMMAND "${Qt6_DIR}/../../../bin/windeployqt6.exe" --no-translations $<TARGET_FILE:${CMAKE_PROJECT_NAME}>
+    )
+endif()
 
 include(qds)
 
