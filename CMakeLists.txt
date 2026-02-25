@@ -7,6 +7,8 @@ message(STATUS "C++ compiler path: ${CMAKE_CXX_COMPILER}")
 message(STATUS "C++ compiler: ${CMAKE_CXX_COMPILER_ID}")
 message(STATUS "C++ compiler version: ${CMAKE_CXX_COMPILER_VERSION}")
 
+set(CMAKE_OBJECT_PATH_MAX 300)
+
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)

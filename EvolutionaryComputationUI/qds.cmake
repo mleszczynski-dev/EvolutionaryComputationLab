@@ -6,6 +6,13 @@ add_subdirectory(DesktopUIContent)
 add_subdirectory(App)
 add_subdirectory(Dependencies)
 
+qt6_add_resources(${CMAKE_PROJECT_NAME} MainResource
+    PREFIX "/qt/qml"
+    VERSION 1.0
+    FILES 
+        "App/settings.json"
+)
+
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE
     DesktopUIplugin
     DesktopUIContentplugin

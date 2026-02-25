@@ -6,7 +6,7 @@ Window {
     height: mainScreen.height
 
     visible: true
-    title: "DesktopUI"
+    title: "Evolutionary Computation UI"
 
     Screen01 {
         id: mainScreen
