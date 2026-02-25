@@ -1,6 +1,7 @@
 ﻿cmake_minimum_required (VERSION 3.12)
 
-project ("EvolutionaryComputationLab" LANGUAGES CXX)
+# WORKAROUND: Project name is EvolutionaryComputationUI because Qt Design Studio autogeneres cmake that use CMAKE_PROJECT_NAME
+project ("EvolutionaryComputationUI" LANGUAGES CXX)
 
 message(STATUS "C++ compiler path: ${CMAKE_CXX_COMPILER}")
 message(STATUS "C++ compiler: ${CMAKE_CXX_COMPILER_ID}")
