@@ -37,3 +37,6 @@ git submodule update --init --recursive --depth 1
 
 Qt6 is required to build EvolutionaryComputationUI. To ensure CMake can find the library, set the environment variable `CMAKE_PREFIX_PATH` to the path of your Qt installation, for example: `C:/Qt/6.x.x/some_build_tools_dir`.
 
+If CMake fails due to excessively long paths of some files:
+- Rename the project directory to a shorter name (e.g., `Ecl`)
+- Move the project to a higher-level location, such as `C:\`
