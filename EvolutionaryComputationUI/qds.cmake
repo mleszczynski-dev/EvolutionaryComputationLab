@@ -10,7 +10,7 @@ qt6_add_resources(${CMAKE_PROJECT_NAME} MainResource
     PREFIX "/qt/qml"
     VERSION 1.0
     FILES 
-        "settings.json"
+        "App/settings.json"
 )
 
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE

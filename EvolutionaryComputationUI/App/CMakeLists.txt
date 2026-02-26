@@ -1,7 +1,7 @@
 
 target_sources(${CMAKE_PROJECT_NAME} PUBLIC
     "include/Application.h"
-    "src/main.cpp"
+    "main.cpp"
     "src/Application.cpp"
 )
 
