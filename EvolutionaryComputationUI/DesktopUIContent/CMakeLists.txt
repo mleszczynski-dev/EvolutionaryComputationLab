@@ -11,6 +11,9 @@ qt6_add_qml_module(DesktopUIContent
     QML_FILES
         "App.qml"
         "Screen01.ui.qml"
+    RESOURCES
+        "images/nodes.png"
+        "images/tasks.png"
 )
 
 

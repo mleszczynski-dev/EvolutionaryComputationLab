@@ -1,0 +1,15 @@
+<RCC>
+    <qresource>
+        <file>App/settings.json</file>
+        <file>DesktopUI.qmlproject</file>
+        <file>DesktopUI/Constants.qml</file>
+        <file>DesktopUI/EventListModel.qml</file>
+        <file>DesktopUI/EventListSimulator.qml</file>
+        <file>DesktopUI/qmldir</file>
+        <file>DesktopUIContent/App.qml</file>
+        <file>DesktopUIContent/images/nodes.png</file>
+        <file>DesktopUIContent/images/tasks.png</file>
+        <file>DesktopUIContent/Screen01.ui.qml</file>
+        <file>qtquickcontrols2.conf</file>
+    </qresource>
+</RCC>

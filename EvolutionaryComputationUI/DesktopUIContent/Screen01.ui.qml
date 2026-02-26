@@ -11,6 +11,7 @@ import QtQuick.Controls
 import DesktopUI
 
 Rectangle {
+    id: rectangle1
     width: Constants.width
     height: Constants.height
 
@@ -24,10 +25,66 @@ Rectangle {
 
     Rectangle {
         id: rectangle
-        x: 74
-        y: 338
-        width: 200
-        height: 200
+        width: 150
+        height: 150
         color: "#ffffff"
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.leftMargin: 0
+        anchors.topMargin: 0
+
+        Image {
+            id: image
+            width: 100
+            height: 100
+            source: "images/nodes.png"
+            anchors.centerIn: parent
+            fillMode: Image.PreserveAspectFit
+        }
+
+        Text {
+            id: text1
+            width: 92
+            height: 16
+            text: qsTr("Computing nodes")
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 8
+            font.pixelSize: 12
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignTop
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+    }
+
+    Rectangle {
+        id: rectangle2
+        width: 150
+        height: 150
+        color: "#ffffff"
+        anchors.left: parent.left
+        anchors.top: rectangle.bottom
+        anchors.leftMargin: 0
+        anchors.topMargin: 0
+        Image {
+            id: image1
+            width: 100
+            height: 100
+            source: "images/tasks.png"
+            fillMode: Image.PreserveAspectFit
+            anchors.centerIn: parent
+        }
+
+        Text {
+            id: text2
+            width: 92
+            height: 16
+            text: qsTr("Computing tasks")
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 8
+            font.pixelSize: 12
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignTop
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
     }
 }

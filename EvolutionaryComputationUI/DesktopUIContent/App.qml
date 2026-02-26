@@ -2,16 +2,18 @@ import QtQuick
 import DesktopUI
 
 Window {
-    width: mainScreen.width
+    width: 1280
     height: mainScreen.height
 
     visible: true
+    minimumHeight: 960
+    minimumWidth: 1280
     title: "Evolutionary Computation UI"
 
     Screen01 {
         id: mainScreen
+        anchors.fill: parent
 
-        anchors.centerIn: parent
     }
 
 }
