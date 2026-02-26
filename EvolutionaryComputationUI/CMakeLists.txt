@@ -8,9 +8,10 @@ project(DesktopUIApp LANGUAGES CXX)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
+message(STATUS "CMAKE_BINARY_DIR = ${CMAKE_BINARY_DIR}")
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-set(QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/qml)
+set(QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}/qml)
 set(QML_IMPORT_PATH ${QT_QML_OUTPUT_DIRECTORY}
     CACHE STRING "Import paths for Qt Creator's code model"
     FORCE
@@ -27,14 +28,14 @@ qt_add_resources(${CMAKE_PROJECT_NAME} "configuration"
 
 add_custom_command(
     TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}/settings.json $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}"/settings.json" $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
 )
 
-if(WIN32)
-    add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-        COMMAND "${Qt6_DIR}/../../../bin/windeployqt6.exe" --no-translations $<TARGET_FILE:${CMAKE_PROJECT_NAME}>
-    )
-endif()
+#if(WIN32)
+#    add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
+#        COMMAND "${Qt6_DIR}/../../../bin/windeployqt6.exe" --qmldir $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}> --no-translations $<TARGET_FILE:${CMAKE_PROJECT_NAME}>
+#    )
+#endif()
 
 include(qds)
 
@@ -46,9 +47,9 @@ if (LINK_INSIGHT)
     include(insight OPTIONAL)
 endif ()
 
-include(GNUInstallDirs)
-install(TARGETS ${CMAKE_PROJECT_NAME}
-  BUNDLE DESTINATION .
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
+#include(GNUInstallDirs)
+#install(TARGETS ${CMAKE_PROJECT_NAME}
+#  BUNDLE DESTINATION .
+#  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+#  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+#)

@@ -7,7 +7,7 @@ Project {
     mainFile: "DesktopUIContent/App.qml"
     mainUiFile: "DesktopUIContent/Screen01.ui.qml"
     targetDirectory: "/opt/DesktopUI"
-    enableCMakeGeneration: false
+    enableCMakeGeneration: true
     widgetApp: true
     importPaths: [ "." ]
 

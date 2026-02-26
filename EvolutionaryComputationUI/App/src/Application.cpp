@@ -44,13 +44,17 @@ int Application::exec(int argc, char* argv[])
 	context.run();
 #endif
 
+    SPDLOG_INFO(L"{}", std::filesystem::current_path().native());
+
 	set_qt_environment();
 	QApplication app(argc, argv);
 
 	QQmlApplicationEngine engine;
 	const QUrl url(mainQmlFile);
-	QObject::connect(
-		&engine, &QQmlApplicationEngine::objectCreated, &app,
+    for(const auto& path : engine.importPathList())
+        SPDLOG_INFO("Import path: {}", path.toStdString());
+    SPDLOG_INFO("Qml url: {}", mainQmlFile);
+	QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, &app,
 		[url](QObject* obj, const QUrl& objUrl) {
 			if (!obj && url == objUrl)
 				QCoreApplication::exit(-1);

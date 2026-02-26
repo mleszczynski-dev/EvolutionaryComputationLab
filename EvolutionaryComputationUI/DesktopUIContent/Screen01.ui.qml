@@ -21,4 +21,13 @@ Rectangle {
         anchors.centerIn: parent
         font.family: Constants.font.family
     }
+
+    Rectangle {
+        id: rectangle
+        x: 74
+        y: 338
+        width: 200
+        height: 200
+        color: "#ffffff"
+    }
 }
