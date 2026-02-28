@@ -24,67 +24,61 @@ Rectangle {
     }
 
     Rectangle {
-        id: rectangle
-        width: 150
-        height: 150
+        id: leftButtonBar
+        width: 120
         color: "#ffffff"
         anchors.left: parent.left
         anchors.top: parent.top
+        anchors.bottom: parent.bottom
         anchors.leftMargin: 0
         anchors.topMargin: 0
+        anchors.bottomMargin: 0
 
-        Image {
-            id: image
-            width: 100
-            height: 100
-            source: "images/nodes.png"
-            anchors.centerIn: parent
-            fillMode: Image.PreserveAspectFit
+        Button {
+            id: buttonTasks
+            height: buttonTasks.width
+            text: qsTr("Tasks")
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: buttonNodes.bottom
+            anchors.leftMargin: 0
+            anchors.rightMargin: 0
+            anchors.topMargin: 0
+            icon.height: Constants.buttonImageHeight
+            icon.width: Constants.buttonImageWidth
+            display: AbstractButton.TextUnderIcon
+            icon.source: "images/tasks.png"
         }
 
-        Text {
-            id: text1
-            width: 92
-            height: 16
-            text: qsTr("Computing nodes")
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 8
-            font.pixelSize: 12
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignTop
-            anchors.horizontalCenter: parent.horizontalCenter
-        }
-    }
-
-    Rectangle {
-        id: rectangle2
-        width: 150
-        height: 150
-        color: "#ffffff"
-        anchors.left: parent.left
-        anchors.top: rectangle.bottom
-        anchors.leftMargin: 0
-        anchors.topMargin: 0
-        Image {
-            id: image1
-            width: 100
-            height: 100
-            source: "images/tasks.png"
-            fillMode: Image.PreserveAspectFit
-            anchors.centerIn: parent
+        Button {
+            id: buttonNodes
+            y: 578
+            height: buttonNodes.width
+            text: qsTr("Nodes")
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.leftMargin: 0
+            anchors.rightMargin: 0
+            icon.width: Constants.buttonImageWidth
+            icon.source: "images/nodes.png"
+            icon.height: Constants.buttonImageHeight
+            display: AbstractButton.TextUnderIcon
         }
 
-        Text {
-            id: text2
-            width: 92
-            height: 16
-            text: qsTr("Computing tasks")
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 8
-            font.pixelSize: 12
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignTop
-            anchors.horizontalCenter: parent.horizontalCenter
+        Button {
+            id: buttonWelcome
+            height: buttonWelcome.width
+            text: qsTr("Welcome")
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: buttonNodes.bottom
+            anchors.leftMargin: 0
+            anchors.rightMargin: 0
+            anchors.topMargin: 0
+            icon.width: Constants.buttonImageWidth
+            icon.source: "images/welcome.png"
+            icon.height: Constants.buttonImageHeight
+            display: AbstractButton.TextUnderIcon
         }
     }
 }

@@ -14,6 +14,7 @@ qt6_add_qml_module(DesktopUIContent
     RESOURCES
         "images/nodes.png"
         "images/tasks.png"
+        "images/welcome.png"
 )
 
 

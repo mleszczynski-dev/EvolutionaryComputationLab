@@ -24,4 +24,8 @@ QtObject {
     property StudioApplication application: StudioApplication {
         fontPath: Qt.resolvedUrl("../DesktopUIContent/" + relativeFontDirectory)
     }
+
+    readonly property int buttonImageWidth: 65
+    readonly property int buttonImageHeight: buttonImageWidth
+    readonly property int buttonFontSizePx: 14
 }
