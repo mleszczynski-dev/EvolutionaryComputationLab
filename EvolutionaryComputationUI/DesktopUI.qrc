@@ -10,7 +10,7 @@
         <file>DesktopUIContent/images/nodes.png</file>
         <file>DesktopUIContent/images/tasks.png</file>
         <file>DesktopUIContent/images/welcome.png</file>
-        <file>DesktopUIContent/Screen01.ui.qml</file>
+        <file>DesktopUIContent/MainScreen.ui.qml</file>
         <file>qtquickcontrols2.conf</file>
     </qresource>
 </RCC>

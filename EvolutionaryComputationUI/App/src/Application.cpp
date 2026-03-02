@@ -14,52 +14,6 @@
 
 #include "../autogen/environment.h"
 
-#include <QObject>
-
-class Backend : public QObject
-{
-    Q_OBJECT
-    Q_PROPERTY(QString message READ message WRITE setMessage NOTIFY messageChanged)
-
-public:
-    explicit Backend(QObject *parent = nullptr);
-
-    QString message() const;
-    void setMessage(const QString &msg);
-
-    Q_INVOKABLE void buttonClicked(); // metoda wywoływana z QML
-
-signals:
-    void messageChanged();
-
-private:
-    QString m_message;
-};
-
-Backend::Backend(QObject *parent)
-    : QObject(parent), m_message("Witaj z C++")
-{
-}
-
-QString Backend::message() const
-{
-    return m_message;
-}
-
-void Backend::setMessage(const QString &msg)
-{
-    if (m_message == msg)
-        return;
-
-    m_message = msg;
-    emit messageChanged();
-}
-
-void Backend::buttonClicked()
-{
-    setMessage("Kliknięto przycisk!");
-}
-
 int Application::exec(int argc, char* argv[])
 {
 	nlohmann::json settings = JsonFile::load("settings.json");
@@ -106,7 +60,7 @@ int Application::exec(int argc, char* argv[])
 				QCoreApplication::exit(-1);
 		}, Qt::QueuedConnection);
 
-    Backend backend;
+    // Backend backend;
     //engine.rootContext()->setContextProperty("backend", &backend);
 
 	engine.addImportPath(QCoreApplication::applicationDirPath() + "/qml");

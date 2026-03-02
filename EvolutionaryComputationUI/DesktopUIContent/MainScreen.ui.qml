@@ -52,13 +52,14 @@ Rectangle {
 
         Button {
             id: buttonNodes
-            y: 578
             height: buttonNodes.width
             text: qsTr("Nodes")
             anchors.left: parent.left
             anchors.right: parent.right
+            anchors.top: buttonWelcome.bottom
             anchors.leftMargin: 0
             anchors.rightMargin: 0
+            anchors.topMargin: 0
             icon.width: Constants.buttonImageWidth
             icon.source: "images/nodes.png"
             icon.height: Constants.buttonImageHeight
@@ -71,7 +72,7 @@ Rectangle {
             text: qsTr("Welcome")
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.top: buttonNodes.bottom
+            anchors.top: parent.top
             anchors.leftMargin: 0
             anchors.rightMargin: 0
             anchors.topMargin: 0

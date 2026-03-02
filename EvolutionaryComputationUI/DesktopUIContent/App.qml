@@ -10,7 +10,7 @@ Window {
     minimumWidth: 1280
     title: "Evolutionary Computation UI"
 
-    Screen01 {
+    MainScreen {
         id: mainScreen
         anchors.fill: parent
 
