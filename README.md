@@ -1,8 +1,8 @@
 # Evolutionary Computation Lab
 
 
-This project aims to provide a flexible and extensible platform to solve search and optimization problems.
-The platform allows you to easily test different evolutionary strategies, compare their performance, and study their behavior under various conditions.
+This project aims to provide a flexible and extensible platform to solve complex search and optimization problems.
+The platform allows you to easily test different algorithms, evolutionary strategies, compare their performance, and study their behavior under various conditions.
 
 
 ## System Architecture
