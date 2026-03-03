@@ -1,52 +1,64 @@
+project(EvolutionaryComputationUI LANGUAGES CXX)
 
-cmake_minimum_required(VERSION 3.21.1)
+add_subdirectory("ui")
 
-option(LINK_INSIGHT "Link Qt Insight Tracker library" ON)
-option(BUILD_QDS_COMPONENTS "Build design studio components" ON)
+find_package(Qt6 6.8 REQUIRED COMPONENTS Core Gui Widgets Qml Quick)
 
-project(DesktopUIApp LANGUAGES CXX)
-
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-
-set(QT_QML_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_PROJECT_NAME}/qml)
-set(QML_IMPORT_PATH ${QT_QML_OUTPUT_DIRECTORY}
-    CACHE STRING "Import paths for Qt Creator's code model"
-    FORCE
-)
-
-find_package(Qt6 6.8 REQUIRED COMPONENTS Core Gui Widgets Qml Quick QuickTimeline ShaderTools)
 qt_standard_project_setup()
 
-qt_add_executable(${CMAKE_PROJECT_NAME})
-qt_add_resources(${CMAKE_PROJECT_NAME} "configuration"
-    PREFIX "/"
+qt_add_executable(${PROJECT_NAME})
+qt_add_resources(${PROJECT_NAME}
+    "configuration"
+    PREFIX ""
     FILES
-        qtquickcontrols2.conf)
-
-add_custom_command(
-    TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_CURRENT_SOURCE_DIR}"/App/settings.json" $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}>
+        "qtquickcontrols2.conf"
 )
 
-#if(WIN32)
-#    add_custom_command(TARGET ${CMAKE_PROJECT_NAME} POST_BUILD
-#        COMMAND "${Qt6_DIR}/../../../bin/windeployqt6.exe" --qmldir $<TARGET_FILE_DIR:${CMAKE_PROJECT_NAME}> --no-translations $<TARGET_FILE:${CMAKE_PROJECT_NAME}>
-#    )
-#endif()
+target_sources(${PROJECT_NAME} PUBLIC
+    "include/Application.h"
+    "src/main.cpp"
+    "src/Application.cpp"
+)
 
-include(qds)
+target_include_directories(${PROJECT_NAME}
+    PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)
 
-if (BUILD_QDS_COMPONENTS)
-    include(qmlcomponents OPTIONAL)
-endif()
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    DesktopUIplugin
+    DesktopUIContentplugin
+    QtQuickDesignerComponents
+    CommonLib
+    NetworkLib
+    Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Gui
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Qml
+    Qt${QT_VERSION_MAJOR}::Quick
+)
 
-if (LINK_INSIGHT)
-    include(insight OPTIONAL)
-endif ()
 
-#include(GNUInstallDirs)
-#install(TARGETS ${CMAKE_PROJECT_NAME}
-#  BUNDLE DESTINATION .
-#  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-#  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+#add_subdirectory(DesktopUI)
+#add_subdirectory(DesktopUIContent)
+#add_subdirectory(App)
+#add_subdirectory(Dependencies)
+
+#set(CMAKE_AUTOUIC ON)
+#set(CMAKE_AUTOMOC ON)
+#set(CMAKE_AUTORCC ON)
+
+#list(APPEND QML_IMPORT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/qml/imports")
+#list(APPEND QML_IMPORT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/qml/cppImports")
+#set(QML_IMPORT_PATH ${QML_IMPORT_PATH}
+#    CACHE STRING "Qt Creator 4.1 extra qml import paths"
+#    FORCE
+#)
+
+#qt_add_resources(${PROJECT_NAME} "configuration"
+#    PREFIX "/"
+#    FILES
+#        qtquickcontrols2.conf
 #)
