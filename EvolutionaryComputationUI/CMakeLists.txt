@@ -7,13 +7,20 @@ find_package(Qt6 6.8 REQUIRED COMPONENTS Core Gui Widgets Qml Quick)
 qt_standard_project_setup()
 
 qt_add_executable(${PROJECT_NAME})
+
+set(conf_file ${CMAKE_CURRENT_SOURCE_DIR}/ui/qtquickcontrols2.conf)
+
+set_source_files_properties(${conf_file}
+    PROPERTIES
+        QT_RESOURCE_ALIAS qtquickcontrols2.conf
+)
+
 qt_add_resources(${PROJECT_NAME}
     "configuration"
     PREFIX ""
     FILES
-        "qtquickcontrols2.conf"
+        ${conf_file}
 )
-
 target_sources(${PROJECT_NAME} PUBLIC
     "include/Application.h"
     "src/main.cpp"
