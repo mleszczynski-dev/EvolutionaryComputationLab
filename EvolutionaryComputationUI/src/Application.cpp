@@ -12,6 +12,8 @@
 
 #include "ui/App/autogen/environment.h"
 
+#include "Backend.h"
+
 int Application::exec(int argc, char* argv[])
 {
 	nlohmann::json settings = JsonFile::load("settings.json");
@@ -24,6 +26,10 @@ int Application::exec(int argc, char* argv[])
 
     set_qt_environment();
 	QApplication app(argc, argv);
+
+    qmlRegisterSingletonType<Backend>(
+        "backend", 1, 0, "BackendObject",
+        [](QQmlEngine *, QJSEngine *) { return new Backend; });
 
 	QQmlApplicationEngine engine;
 
@@ -38,9 +44,6 @@ int Application::exec(int argc, char* argv[])
 			if (!obj && url == objUrl)
 				QCoreApplication::exit(-1);
 		}, Qt::QueuedConnection);
-
-    // Backend backend;
-    //engine.rootContext()->setContextProperty("backend", &backend);
 
 	engine.addImportPath(QCoreApplication::applicationDirPath() + "/qml");
 	engine.addImportPath(":/");

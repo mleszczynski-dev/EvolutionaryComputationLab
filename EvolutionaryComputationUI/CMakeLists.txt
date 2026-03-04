@@ -8,9 +8,9 @@ qt_standard_project_setup()
 
 qt_add_executable(${PROJECT_NAME})
 
-set(conf_file ${CMAKE_CURRENT_SOURCE_DIR}/ui/qtquickcontrols2.conf)
+set(QtQuickControls2Conf ${CMAKE_CURRENT_SOURCE_DIR}/ui/qtquickcontrols2.conf)
 
-set_source_files_properties(${conf_file}
+set_source_files_properties(${QtQuickControls2Conf}
     PROPERTIES
         QT_RESOURCE_ALIAS qtquickcontrols2.conf
 )
@@ -19,12 +19,17 @@ qt_add_resources(${PROJECT_NAME}
     "configuration"
     PREFIX ""
     FILES
-        ${conf_file}
+        ${QtQuickControls2Conf}
 )
-target_sources(${PROJECT_NAME} PUBLIC
+
+target_sources(${PROJECT_NAME}
+    PUBLIC
     "include/Application.h"
-    "src/main.cpp"
+    "include/Backend.h"
+    PRIVATE
     "src/Application.cpp"
+    "src/Backend.cpp"
+    "src/main.cpp"
 )
 
 target_include_directories(${PROJECT_NAME}
