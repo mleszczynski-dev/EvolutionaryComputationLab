@@ -10,7 +10,7 @@ qt6_add_qml_module(DesktopUIContent
     RESOURCE_PREFIX "/qt/qml"
     QML_FILES
         "App.qml"
-        "MainScreen.ui.qml"
+        "MainScreen.qml"
     RESOURCES
         "images/nodes.png"
         "images/tasks.png"

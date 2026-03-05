@@ -8,6 +8,7 @@
 #include <QGuiApplication>
 #include "qqmlextensionplugin.h"
 
+Q_IMPORT_QML_PLUGIN(backendPlugin)
 Q_IMPORT_QML_PLUGIN(DesktopUIPlugin)
 Q_IMPORT_QML_PLUGIN(DesktopUIContentPlugin)
 

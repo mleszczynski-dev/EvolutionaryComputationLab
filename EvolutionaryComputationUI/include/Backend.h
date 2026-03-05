@@ -1,12 +1,10 @@
 #pragma once
 
 #include <QObject>
-#include <qqml.h>
 
 class Backend : public QObject
 {
     Q_OBJECT
-    QML_ELEMENT   // <- automatyczna rejestracja do QML (Qt 6)
 
     Q_PROPERTY(QString message READ message WRITE setMessage NOTIFY messageChanged)
 

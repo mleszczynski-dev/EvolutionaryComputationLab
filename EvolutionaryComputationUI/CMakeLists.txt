@@ -27,6 +27,7 @@ target_sources(${PROJECT_NAME}
     "include/Application.h"
     "include/Backend.h"
     PRIVATE
+    "include/environment.h"
     "src/Application.cpp"
     "src/Backend.cpp"
     "src/main.cpp"
@@ -51,26 +52,3 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt${QT_VERSION_MAJOR}::Qml
     Qt${QT_VERSION_MAJOR}::Quick
 )
-
-
-#add_subdirectory(DesktopUI)
-#add_subdirectory(DesktopUIContent)
-#add_subdirectory(App)
-#add_subdirectory(Dependencies)
-
-#set(CMAKE_AUTOUIC ON)
-#set(CMAKE_AUTOMOC ON)
-#set(CMAKE_AUTORCC ON)
-
-#list(APPEND QML_IMPORT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/qml/imports")
-#list(APPEND QML_IMPORT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/qml/cppImports")
-#set(QML_IMPORT_PATH ${QML_IMPORT_PATH}
-#    CACHE STRING "Qt Creator 4.1 extra qml import paths"
-#    FORCE
-#)
-
-#qt_add_resources(${PROJECT_NAME} "configuration"
-#    PREFIX "/"
-#    FILES
-#        qtquickcontrols2.conf
-#)

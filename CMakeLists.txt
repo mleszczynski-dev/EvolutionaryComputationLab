@@ -12,6 +12,7 @@ set(CMAKE_OBJECT_PATH_MAX 300)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_VERBOSE_MAKEFILE ON)
 
 set(ASIO_DIR "${CMAKE_CURRENT_SOURCE_DIR}/3rd_party/asio/asio")
 set(GOOGLE_MOCK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/3rd_party/googletest/googlemock")
@@ -25,14 +26,17 @@ endif()
 
 add_compile_definitions(
     SPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE
-    SPDLOG_WCHAR_TO_UTF8_SUPPORT)
+    SPDLOG_WCHAR_TO_UTF8_SUPPORT
+)
+
 if (WIN32)
     add_compile_definitions(
         _WIN32_WINNT=0x0601
         UNICODE
         _UNICODE
         WIN32_LEAN_AND_MEAN
-        NOMINMAX)
+        NOMINMAX
+    )
 endif()
 
 add_subdirectory(3rd_party)

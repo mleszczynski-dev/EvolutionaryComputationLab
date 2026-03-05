@@ -1,0 +1,2 @@
+module backend
+singleton BackendObject 1.0 BackendObject.qml

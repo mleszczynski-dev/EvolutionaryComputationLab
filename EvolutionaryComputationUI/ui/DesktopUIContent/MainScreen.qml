@@ -9,6 +9,7 @@ Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on
 import QtQuick
 import QtQuick.Controls
 import DesktopUI
+import backend 1.0
 
 Rectangle {
     id: rectangle1
@@ -48,6 +49,10 @@ Rectangle {
             icon.width: Constants.buttonImageWidth
             display: AbstractButton.TextUnderIcon
             icon.source: "images/tasks.png"
+
+            onClicked: {
+                text = BackendObject.message
+            }
         }
 
         Button {
