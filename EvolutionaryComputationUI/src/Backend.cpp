@@ -1,8 +1,16 @@
 #include "Backend.h"
 
+#include <spdlog/spdlog.h>
+
 Backend::Backend(QObject *parent)
     : QObject(parent), m_message("Hello from C++")
 {
+    QObject::connect(this, &Backend::welcomeClicked, this, &Backend::onWelcomeClicked);
+}
+
+void Backend::onWelcomeClicked()
+{
+    SPDLOG_INFO("");
 }
 
 QString Backend::message() const

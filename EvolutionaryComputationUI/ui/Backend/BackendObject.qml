@@ -31,4 +31,11 @@ QtObject {
     id: root
 
     property string message: "Mock backend"
+
+    signal welcomeClicked
+
+    onWelcomeClicked: {
+        message = "ABCD"
+        console.log("onWelcomeClicked");
+    }
 }

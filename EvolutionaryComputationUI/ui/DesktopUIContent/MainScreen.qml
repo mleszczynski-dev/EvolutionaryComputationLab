@@ -24,8 +24,8 @@ Rectangle {
         font.family: Constants.font.family
     }
 
-    Rectangle {
-        id: leftButtonBar
+    ModeButtonBar {
+        id: modeButtonBar
         width: 120
         color: "#ffffff"
         anchors.left: parent.left
@@ -35,56 +35,9 @@ Rectangle {
         anchors.topMargin: 0
         anchors.bottomMargin: 0
 
-        Button {
-            id: buttonTasks
-            height: buttonTasks.width
-            text: qsTr("Tasks")
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.top: buttonNodes.bottom
-            anchors.leftMargin: 0
-            anchors.rightMargin: 0
-            anchors.topMargin: 0
-            icon.height: Constants.buttonImageHeight
-            icon.width: Constants.buttonImageWidth
-            display: AbstractButton.TextUnderIcon
-            icon.source: "images/tasks.png"
-
-            onClicked: {
-                text = BackendObject.message
-            }
-        }
-
-        Button {
-            id: buttonNodes
-            height: buttonNodes.width
-            text: qsTr("Nodes")
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.top: buttonWelcome.bottom
-            anchors.leftMargin: 0
-            anchors.rightMargin: 0
-            anchors.topMargin: 0
-            icon.width: Constants.buttonImageWidth
-            icon.source: "images/nodes.png"
-            icon.height: Constants.buttonImageHeight
-            display: AbstractButton.TextUnderIcon
-        }
-
-        Button {
-            id: buttonWelcome
-            height: buttonWelcome.width
-            text: qsTr("Welcome")
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.top: parent.top
-            anchors.leftMargin: 0
-            anchors.rightMargin: 0
-            anchors.topMargin: 0
-            icon.width: Constants.buttonImageWidth
-            icon.source: "images/welcome.png"
-            icon.height: Constants.buttonImageHeight
-            display: AbstractButton.TextUnderIcon
+        welcome.onClicked: {
+            BackendObject.welcomeClicked();
+            modeButtonBar.welcome.text = BackendObject.message
         }
     }
 }

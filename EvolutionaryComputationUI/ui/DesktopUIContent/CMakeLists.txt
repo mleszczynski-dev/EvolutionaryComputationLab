@@ -11,6 +11,8 @@ qt6_add_qml_module(DesktopUIContent
     QML_FILES
         "App.qml"
         "MainScreen.qml"
+        "ModeButtonBar.ui.qml"
+        "MBB.qml"
     RESOURCES
         "images/nodes.png"
         "images/tasks.png"

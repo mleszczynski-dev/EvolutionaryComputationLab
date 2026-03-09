@@ -27,9 +27,7 @@ int Application::exec(int argc, char* argv[])
     set_qt_environment();
 	QApplication app(argc, argv);
 
-    qmlRegisterSingletonType<Backend>(
-        "backend", 1, 0, "BackendObject",
-        [](QQmlEngine *, QJSEngine *) { return new Backend; });
+    qmlRegisterSingletonType<Backend>("backend", 1, 0, "BackendObject", [](QQmlEngine*, QJSEngine*) { return new Backend; });
 
 	QQmlApplicationEngine engine;
 

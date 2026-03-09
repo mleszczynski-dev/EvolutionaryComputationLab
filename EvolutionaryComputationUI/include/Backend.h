@@ -16,7 +16,10 @@ public:
 
     Q_INVOKABLE void generateMessage();
 
+    void onWelcomeClicked();
+
 signals:
+    void welcomeClicked();
     void messageChanged();
 
 private:
