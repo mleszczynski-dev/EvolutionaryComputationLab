@@ -9,14 +9,20 @@ Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on
 import QtQuick
 import QtQuick.Controls
 
+import DesktopUI
+
 Rectangle {
+    readonly property int buttonSizePx: 96
+    readonly property int buttonIconSizePx: 48
+
+    color: Constants.backgroundColor
     /* default values */
     width: 100
-
-    property int buttonSizePx: 96
-    property int buttonIconSizePx: 48
+    height: 3 * buttonSizePx
 
     property alias welcome: buttonWelcome
+    property alias nodes: buttonNodes
+    property alias tasks: buttonTasks
 
     Button {
         id: buttonWelcome

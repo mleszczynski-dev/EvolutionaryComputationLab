@@ -5,7 +5,7 @@ import QmlProject
 
 Project {
     mainFile: "DesktopUIContent/App.qml"
-    mainUiFile: "DesktopUIContent/MainScreen.qml"
+    mainUiFile: "DesktopUIContent/Z_MainScreen.qml"
     targetDirectory: "/opt/DesktopUI"
     enableCMakeGeneration: true
     widgetApp: true

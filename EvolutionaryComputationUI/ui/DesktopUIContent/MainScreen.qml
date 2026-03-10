@@ -8,36 +8,73 @@ Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on
 */
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 import DesktopUI
 import backend 1.0
 
-Rectangle {
-    id: rectangle1
-    width: Constants.width
-    height: Constants.height
+Item {
+    RowLayout {
+        anchors.fill: parent
+        spacing: 0
+        Layout.fillWidth: true
+        Layout.fillHeight: true
 
-    color: Constants.backgroundColor
+        ModeButtonBar {
+            Layout.fillHeight: true
+            width: 120
 
-    Text {
-        text: qsTr("Hello Evolutionary Computation UI")
-        anchors.centerIn: parent
-        font.family: Constants.font.family
-    }
-
-    ModeButtonBar {
-        id: modeButtonBar
-        width: 120
-        color: "#ffffff"
-        anchors.left: parent.left
-        anchors.top: parent.top
-        anchors.bottom: parent.bottom
-        anchors.leftMargin: 0
-        anchors.topMargin: 0
-        anchors.bottomMargin: 0
-
-        welcome.onClicked: {
-            BackendObject.welcomeClicked();
-            modeButtonBar.welcome.text = BackendObject.message
+            welcome.onClicked: layout.currentIndex = 0
+            nodes.onClicked: layout.currentIndex = 1
+            tasks.onClicked: layout.currentIndex = 2
         }
+
+        Rectangle {
+            // Layout.fillWidth: true
+            Layout.fillHeight: true
+            width: 1
+            color: "black"
+        }
+
+        StackLayout {
+            id: layout
+
+            //Item { Text { text: "Home" } }
+            //Item { Text { text: "Settings" } }
+
+            Rectangle {
+                id: welcomePage
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                color: "white"
+                Text {
+                    anchors.centerIn: parent
+                    text: "Welcome"
+                }
+            }
+
+            Rectangle {
+                id: nodesPage
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                color: "white"
+                Text {
+                    anchors.centerIn: parent
+                    text: "Nodes"
+                }
+            }
+
+            Rectangle {
+                id: tasksPage
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+                color: "white"
+                Text {
+                    anchors.centerIn: parent
+                    text: "Tasks"
+                }
+            }
+        }
+
+
     }
 }

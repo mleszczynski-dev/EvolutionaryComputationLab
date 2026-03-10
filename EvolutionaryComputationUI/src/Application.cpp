@@ -5,7 +5,9 @@
 #include <TcpClient.h>
 
 #include <QApplication>
+#include <QIcon>
 #include <QQmlApplicationEngine>
+#include <QQuickWindow>
 #include <asio/executor_work_guard.hpp>
 #include <asio/io_context.hpp>
 #include <spdlog/spdlog.h>
@@ -31,6 +33,9 @@ int Application::exec(int argc, char* argv[])
 
 	QQmlApplicationEngine engine;
 
+    //app.setWindowIcon(QIcon("D:/Ecl/EvolutionaryComputationUI/ui/DesktopUIContent/images/nodes.png"));
+
+
     for(const auto& path : engine.importPathList())
         SPDLOG_INFO("Import path: {}", path.toStdString());
 
@@ -49,6 +54,8 @@ int Application::exec(int argc, char* argv[])
 
 	if (engine.rootObjects().isEmpty())
 		return -1;
+
+    app.setWindowIcon(QIcon(":/qt/qml/DesktopUIContent/images/nodes.png"));
 
 	return app.exec();
 }
