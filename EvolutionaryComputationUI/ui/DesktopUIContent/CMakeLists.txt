@@ -12,10 +12,10 @@ qt6_add_qml_module(DesktopUIContent
         "App.qml"
         "MainScreen.qml"
         "ModeButtonBar.ui.qml"
-        "NodesScreen.ui.qml"
-        "TasksScreen.ui.qml"
-        "WelcomeScreen.ui.qml"
         "Z_MainScreen.qml"
+        "WelcomeWidget.ui.qml"
+        "TasksWidget.ui.qml"
+        "NodesWidget.ui.qml"
     RESOURCES
         "images/_nodes.png"
         "images/_tasks.png"

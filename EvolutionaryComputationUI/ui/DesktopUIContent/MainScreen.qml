@@ -15,66 +15,45 @@ import backend 1.0
 Item {
     RowLayout {
         anchors.fill: parent
+
         spacing: 0
-        Layout.fillWidth: true
-        Layout.fillHeight: true
 
         ModeButtonBar {
-            Layout.fillHeight: true
             width: 120
+            Layout.fillHeight: true
 
-            welcome.onClicked: layout.currentIndex = 0
-            nodes.onClicked: layout.currentIndex = 1
-            tasks.onClicked: layout.currentIndex = 2
+            welcome.onClicked: stackLayout.currentIndex = 0
+            nodes.onClicked: stackLayout.currentIndex = 1
+            tasks.onClicked: stackLayout.currentIndex = 2
         }
 
         Rectangle {
-            // Layout.fillWidth: true
-            Layout.fillHeight: true
             width: 1
+            Layout.fillHeight: true
+
             color: "black"
         }
 
         StackLayout {
-            id: layout
+            id: stackLayout
 
-            //Item { Text { text: "Home" } }
-            //Item { Text { text: "Settings" } }
+            Layout.fillWidth: true
+            Layout.fillHeight: true
 
-            Rectangle {
-                id: welcomePage
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                color: "white"
-                Text {
-                    anchors.centerIn: parent
-                    text: "Welcome"
-                }
+            WelcomeWidget {
+                id: welcomeWidget
+                anchors.fill: parent
             }
 
-            Rectangle {
-                id: nodesPage
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                color: "white"
-                Text {
-                    anchors.centerIn: parent
-                    text: "Nodes"
-                }
+            NodesWidget {
+                id: nodesWidget
+                anchors.fill: parent
             }
 
-            Rectangle {
-                id: tasksPage
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                color: "white"
-                Text {
-                    anchors.centerIn: parent
-                    text: "Tasks"
-                }
+            TasksWidget {
+                id: tasksWidget
+                anchors.fill: parent
             }
         }
-
-
     }
 }
