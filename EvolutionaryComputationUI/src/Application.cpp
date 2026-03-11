@@ -33,9 +33,6 @@ int Application::exec(int argc, char* argv[])
 
 	QQmlApplicationEngine engine;
 
-    //app.setWindowIcon(QIcon("D:/Ecl/EvolutionaryComputationUI/ui/DesktopUIContent/images/nodes.png"));
-
-
     for(const auto& path : engine.importPathList())
         SPDLOG_INFO("Import path: {}", path.toStdString());
 

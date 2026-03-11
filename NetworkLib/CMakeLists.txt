@@ -10,11 +10,13 @@ add_library(
 	"include/TcpServer.h"
 	"include/TcpServerPtr.h"
 	"include/TcpSocket.h"
+	"include/TcpSocketPtr.h"
 	"src/AbstractClient.cpp"
 	"src/AbstractServer.cpp"
 	"src/TcpClient.cpp"
 	"src/TcpServer.cpp"
 	"src/TcpSocket.cpp"
+	"src/AbstractSocket.cpp"
 )
 
 target_link_libraries(

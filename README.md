@@ -1,5 +1,11 @@
-# Evolutionary Computation Lab
+## Project Status
 
+![Project Status](https://img.shields.io/badge/status-early--development-yellow)
+
+This project is currently in an intensive development phase. Features are under active development and may change frequently.
+
+
+# Evolutionary Computation Lab
 
 This project aims to provide a flexible and extensible platform to solve complex search and optimization problems.
 The platform allows you to easily test different algorithms, evolutionary strategies, compare their performance, and study their behavior under various conditions.

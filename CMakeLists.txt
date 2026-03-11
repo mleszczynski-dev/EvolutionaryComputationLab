@@ -48,3 +48,5 @@ add_subdirectory(EvolutionaryComputationNodeTest)
 add_subdirectory(EvolutionaryComputationUI)
 add_subdirectory(MessageAPI)
 add_subdirectory(NetworkLib)
+
+add_subdirectory(TcpClientExample)

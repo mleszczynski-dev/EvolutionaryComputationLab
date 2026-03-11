@@ -23,7 +23,7 @@ public:
 
 	static TcpServerPtr create(asio::io_context& context);
 
-	void setConnectionCallback(std::function<void(AbstractSocket&&)> callback);
+    void setConnectionCallback(std::function<void(AbstractSocket&&)> callback);
 
 	[[nodiscard]]
 	bool listen(std::uint16_t port);
@@ -37,4 +37,3 @@ private:
 	std::unique_ptr<asio::ip::tcp::acceptor> acceptor_;
 	std::function<void(AbstractSocket&&)> callback_ = nullptr;
 };
-

@@ -2,6 +2,7 @@
 
 #include "AbstractClient.h"
 #include "TcpClientPtr.h"
+#include "TcpSocketPtr.h"
 
 #include <asio/io_context.hpp>
 #include <asio/ip/tcp.hpp>
@@ -28,15 +29,12 @@ public:
 
 protected:
 	void onConnectionResolved(const asio::error_code& ec, asio::ip::tcp::resolver::results_type endpoints);
-	void onConnectionEstablished(const asio::error_code& ec, const asio::ip::tcp::endpoint& endpoint);
+    void onConnectionEstablished(const asio::error_code& ec, const asio::ip::tcp::endpoint& endpoint, TcpSocketPtr socket);
 
 private:
 	asio::io_context& context_;
-	asio::ip::tcp::resolver resolver_;
-	asio::ip::tcp::socket socket_;
+    std::shared_ptr<asio::ip::tcp::resolver> resolver_;
 	std::string host_;
 	std::uint16_t port_ = 0;
-
-	enum { max_length = 1024 };
-	char data_[max_length] { '\0' };
+    TcpSocketPtr socket_;
 };

@@ -42,17 +42,14 @@ Item {
 
             WelcomeWidget {
                 id: welcomeWidget
-                anchors.fill: parent
             }
 
             NodesWidget {
                 id: nodesWidget
-                anchors.fill: parent
             }
 
             TasksWidget {
                 id: tasksWidget
-                anchors.fill: parent
             }
         }
     }

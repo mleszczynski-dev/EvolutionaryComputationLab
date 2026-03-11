@@ -3,6 +3,10 @@ project("EvolutionaryComputationLab" LANGUAGES CXX)
 add_executable(
     ${PROJECT_NAME}
     "src/main.cpp"
+    "include/Application.h"
+    "src/Application.cpp"
+    "include/EchoManager.h"
+    "src/EchoManager.cpp"
 )
 
 target_link_libraries(
